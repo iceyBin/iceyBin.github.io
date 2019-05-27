@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[4，Topic交换器]]></title>
+    <url>%2F2019%2F05%2F27%2F4%EF%BC%8CTopic%E4%BA%A4%E6%8D%A2%E5%99%A8%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>中间件</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[3, Fanout交换器]]></title>
     <url>%2F2019%2F05%2F26%2F3-Fanout%E4%BA%A4%E6%8D%A2%E5%99%A8%2F</url>
     <content type="text"></content>
+      <categories>
+        <category>中间件</category>
+      </categories>
       <tags>
         <tag>RabbitMQ</tag>
       </tags>
