@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="Coding, Travelling, Learning and Enjoying">
+  <meta name="description" content="Direct类型交换器-生产者confirm模式上篇文章简单入门了Direct交换器，如有需要请查看 Direct类型交换器-基础使用 1 prefetch属性的设置问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能者多劳呢？ 答案是：均匀分发消费。如果一个消费者有多个实例，那么到达这个消费者的消息会被broker">
 <meta name="keywords" content="RabbitMQ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3, Direct类型交换器-生产者confirm模式">
 <meta property="og:url" content="http://yoursite.com/2019/05/26/3-Direct类型交换器-生产者confirm模式/index.html">
 <meta property="og:site_name" content="Ice&#39;s Blog">
-<meta property="og:description" content="Coding, Travelling, Learning and Enjoying">
+<meta property="og:description" content="Direct类型交换器-生产者confirm模式上篇文章简单入门了Direct交换器，如有需要请查看 Direct类型交换器-基础使用 1 prefetch属性的设置问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能者多劳呢？ 答案是：均匀分发消费。如果一个消费者有多个实例，那么到达这个消费者的消息会被broker">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-28T10:42:00.058Z">
+<meta property="og:updated_time" content="2019-05-30T09:36:26.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3, Direct类型交换器-生产者confirm模式">
-<meta name="twitter:description" content="Coding, Travelling, Learning and Enjoying">
+<meta name="twitter:description" content="Direct类型交换器-生产者confirm模式上篇文章简单入门了Direct交换器，如有需要请查看 Direct类型交换器-基础使用 1 prefetch属性的设置问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能者多劳呢？ 答案是：均匀分发消费。如果一个消费者有多个实例，那么到达这个消费者的消息会被broker">
 
 
 
@@ -175,6 +175,7 @@
 
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
+
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
@@ -433,7 +434,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-28 18:42:00" itemprop="dateModified" datetime="2019-05-28T18:42:00+08:00">2019-05-28</time>
+                <time title="修改时间：2019-05-30 17:36:26" itemprop="dateModified" datetime="2019-05-30T17:36:26+08:00">2019-05-30</time>
               
             
           </span>
@@ -485,7 +486,46 @@
       
 
       
-        
+        <h1 id="Direct类型交换器-生产者confirm模式"><a href="#Direct类型交换器-生产者confirm模式" class="headerlink" title="Direct类型交换器-生产者confirm模式"></a>Direct类型交换器-生产者confirm模式</h1><p>上篇文章简单入门了Direct交换器，如有需要请查看 <a href="https://iceybin.github.io/2019/05/26/2-Direct%E7%B1%BB%E5%9E%8B%E4%BA%A4%E6%8D%A2%E5%99%A8-%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/#more" target="_blank" rel="noopener">Direct类型交换器-基础使用</a></p>
+<h2 id="1-prefetch属性的设置"><a href="#1-prefetch属性的设置" class="headerlink" title="1 prefetch属性的设置"></a>1 prefetch属性的设置</h2><p>问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能者多劳呢？</p>
+<p>答案是：<strong>均匀分发消费</strong>。如果一个消费者有多个实例，那么到达这个消费者的消息会被broker进行均匀的分发消费，这是broker默认的机制。当然，实际应用中，会有很多的条件导致该消费者的多个实例的消费能力不同 <em>(比如机器配置不同、网络带宽影响等等)</em>，这时我们理想的情况是”能者多劳”。这时，我们只需要调用 <code>basicQos</code> 方法这时 <code>prefetch = 1</code> 即可 ，即可达到理想效果 <em>(这也是springBoot集成rabbitMQ的默认配置)</em>。这样设置的情况下，如果某个消费者实例消费能力比较弱，在收到 <code>ack</code> 确认之前，broker不会再分发消息到该实例</p>
+<pre><code>int prefetchCount = 1;
+channel.basicQos(prefetchCount);
+</code></pre><h2 id="2-生产者confirm模式"><a href="#2-生产者confirm模式" class="headerlink" title="2 生产者confirm模式"></a>2 生产者confirm模式</h2><p>上篇文章说到，消费者可以采用手动 <code>ack</code> 确认的模式尽量的防止消息的丢失。但是，这样真的就达到目的了吗？当然不是，试想，如果生产者的消息根本就没有到达broker呢？要解决这个问题，就需要用到<strong>生产者confirm模式</strong></p>
+<h3 id="2-1-设置channel为confirm模式"><a href="#2-1-设置channel为confirm模式" class="headerlink" title="2.1 设置channel为confirm模式"></a>2.1 设置channel为confirm模式</h3><pre><code>// 将信道设置为confirm模式
+channel.confirmSelect();
+</code></pre><p>broker如果接收到消息会进行回调，生产者有两种方式可以进行消息发送成功以及失败的后续处理，分别是<strong>手动逐条确认</strong>和<strong>异步监听确认</strong></p>
+<h3 id="2-2-手动逐条确认"><a href="#2-2-手动逐条确认" class="headerlink" title="2.2 手动逐条确认"></a>2.2 手动逐条确认</h3><p>每次发送消息后进行确认</p>
+<pre><code>if (channel.waitForConfirms()) {
+    System.out.println(String.format(&quot;推送消息[%s]成功&quot;, message));
+} else {
+    System.out.println(String.format(&quot;推送消息[%s]失败，消息丢失&quot;, message));
+}
+</code></pre><h3 id="2-3-异步监听确认"><a href="#2-3-异步监听确认" class="headerlink" title="2.3 异步监听确认"></a>2.3 异步监听确认</h3><p>还可以通过添加监听进行异步确认。改方式的优点是：<strong>异步、可以批量确认</strong></p>
+<pre><code>channel.addConfirmListener(new ConfirmListener() {
+    @Override
+    public void handleAck(long deliveryTag, boolean multiple) throws IOException {
+        System.out.println(String.format(&quot;MQ接收消息[%s:%b]成功&quot;, deliveryTag, multiple));
+    }
+
+    @Override
+    public void handleNack(long deliveryTag, boolean multiple) throws IOException {
+        System.out.println(String.format(&quot;MQ接收消息[%s:%b]失败，消息丢失&quot;, deliveryTag, multiple));
+    }
+});
+</code></pre><p>我们来看下异步确认程序的执行结果：</p>
+<pre><code>MQ接收消息[2:true]成功
+MQ接收消息[3:false]成功
+MQ接收消息[4:false]成功
+MQ接收消息[5:false]成功
+MQ接收消息[6:false]成功
+</code></pre><p>从执行结果中可以看出，是否批量确认在于返回的multiple的参数，此参数为bool值。有时 <code>multiple</code> 返回的是 <strong>true</strong>，这说明批量确认了  响应的 <code>deliveryTag</code> 标识的该条消息之前的所有消息，返回 <code>false</code> 表示单条确认对应的 <code>deliveryTag</code> 这条消息。可以看到使用这种模式 <code>deliveryTag</code> 会从1依次递增标识消息。</p>
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3 总结"></a>3 总结</h1><ol>
+<li>一般情况下消费者会使用 <code>channel.basicQos(int prefetch)</code> 方法设置prefetch为1，达到同个消费者多个实例之间”能者多劳”的目的</li>
+<li>为了尽量的保证避免消息的丢失，应该同时采用<strong>消费者手动ack</strong>和<strong>生产者confirm模式</strong></li>
+<li>虽然rabbitMQ还有事务机制保证生产者发送的消息一定会到达broker，但是本身性能受损比较严重，不建议使用，有兴趣的可以另行查找资料</li>
+</ol>
+
       
     </div>
 
@@ -521,8 +561,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/26/2-Direct类型交换器-基础使用/" rel="next" title="2，Direct类型交换器-基础使用">
-                <i class="fa fa-chevron-left"></i> 2，Direct类型交换器-基础使用
+              <a href="/2019/05/26/2-Direct类型交换器-基础使用/" rel="next" title="2, Direct类型交换器-基础使用">
+                <i class="fa fa-chevron-left"></i> 2, Direct类型交换器-基础使用
               </a>
             
           </div>
@@ -577,8 +617,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -686,6 +735,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Direct类型交换器-生产者confirm模式"><span class="nav-number">1.</span> <span class="nav-text">Direct类型交换器-生产者confirm模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-prefetch属性的设置"><span class="nav-number">1.1.</span> <span class="nav-text">1 prefetch属性的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-生产者confirm模式"><span class="nav-number">1.2.</span> <span class="nav-text">2 生产者confirm模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-设置channel为confirm模式"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 设置channel为confirm模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-手动逐条确认"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 手动逐条确认</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-异步监听确认"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 异步监听确认</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-总结"><span class="nav-number">2.</span> <span class="nav-text">3 总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
