@@ -96,18 +96,20 @@
 
 
 
-  <meta name="description" content="Coding, Travelling, Learning and Enjoying">
+  <meta name="description" content="1 知识回顾通过之前 direct 交换器的学习，我们已经对rabbitMQ消息传递机制有了一定的了解，可以总结为以下几点：  生产者是生产并发送消息的应用程序 队列是消息的缓冲区，用来存放消息 消费者是接收并消费消息的应用程序  我们知道，broker是生产者和消费者之前的”桥梁”，接收生产者消息并将消息发送给消费者。那么，应该发给那些消费者，是指定的消费者还是全部的消费者呢？这就取决于 exc">
 <meta name="keywords" content="RabbitMQ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4，Fanout交换器">
 <meta property="og:url" content="http://yoursite.com/2019/05/27/4-Fanout交换器/index.html">
 <meta property="og:site_name" content="Ice&#39;s Blog">
-<meta property="og:description" content="Coding, Travelling, Learning and Enjoying">
+<meta property="og:description" content="1 知识回顾通过之前 direct 交换器的学习，我们已经对rabbitMQ消息传递机制有了一定的了解，可以总结为以下几点：  生产者是生产并发送消息的应用程序 队列是消息的缓冲区，用来存放消息 消费者是接收并消费消息的应用程序  我们知道，broker是生产者和消费者之前的”桥梁”，接收生产者消息并将消息发送给消费者。那么，应该发给那些消费者，是指定的消费者还是全部的消费者呢？这就取决于 exc">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-28T10:42:18.728Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/27/4-Fanout交换器/themes/next/source/images/loading.gif">
+<meta property="og:updated_time" content="2019-05-31T08:05:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4，Fanout交换器">
-<meta name="twitter:description" content="Coding, Travelling, Learning and Enjoying">
+<meta name="twitter:description" content="1 知识回顾通过之前 direct 交换器的学习，我们已经对rabbitMQ消息传递机制有了一定的了解，可以总结为以下几点：  生产者是生产并发送消息的应用程序 队列是消息的缓冲区，用来存放消息 消费者是接收并消费消息的应用程序  我们知道，broker是生产者和消费者之前的”桥梁”，接收生产者消息并将消息发送给消费者。那么，应该发给那些消费者，是指定的消费者还是全部的消费者呢？这就取决于 exc">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/27/4-Fanout交换器/themes/next/source/images/loading.gif">
 
 
 
@@ -434,7 +436,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-28 18:42:18" itemprop="dateModified" datetime="2019-05-28T18:42:18+08:00">2019-05-28</time>
+                <time title="修改时间：2019-05-31 16:05:32" itemprop="dateModified" datetime="2019-05-31T16:05:32+08:00">2019-05-31</time>
               
             
           </span>
@@ -468,6 +470,13 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
           
 
@@ -486,7 +495,37 @@
       
 
       
-        
+        <h1 id="1-知识回顾"><a href="#1-知识回顾" class="headerlink" title="1 知识回顾"></a>1 知识回顾</h1><p>通过之前 <code>direct</code> 交换器的学习，我们已经对rabbitMQ消息传递机制有了一定的了解，可以总结为以下几点：</p>
+<ol>
+<li>生产者是生产并发送消息的应用程序</li>
+<li>队列是消息的缓冲区，用来存放消息</li>
+<li>消费者是接收并消费消息的应用程序</li>
+</ol>
+<p>我们知道，broker是生产者和消费者之前的”桥梁”，接收生产者消息并将消息发送给消费者。那么，应该发给那些消费者，是指定的消费者还是全部的消费者呢？这就取决于 <code>exchange</code> 的类型，一共四种类型：<code>direct</code>，<code>headers</code>，<code>fanout</code>，<code>topic</code>，其中 <code>headers</code> 跟 <code>direct</code> 很类似，基本不再使用。 这里我们将会说到 <code>fanout</code> 交换器</p>
+<h1 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2 应用场景"></a>2 应用场景</h1><p>生产者发送的消息到broker，所有绑定到改broker的队列对应的消费者都可以接收到消息，类似于”广播”通知模式。<br><br>例如注册操作。 一般情况下，用户注册后都会进行一系列的业务操作，比如站内信通知，发送积分，甚至活动期间发送奖励等。这时，就需要当用户注册后，所有关注 “注册” 的业务都需要收到 “用户注册” 这个消息，并进行相应的逻辑处理，这时就可以用 <code>fanout</code> 类型交换器实现消息的推送通知。</p>
+<h1 id="3-进入正题"><a href="#3-进入正题" class="headerlink" title="3 进入正题"></a>3 进入正题</h1><p><img src="./themes/next/source/images/loading.gif" data-original="/../img/201905/fanout.png" alt="fanout交换器"></p>
+<h2 id="3-1-生产者发送消息"><a href="#3-1-生产者发送消息" class="headerlink" title="3.1 生产者发送消息"></a>3.1 生产者发送消息</h2><pre><code>// 定义Fanout类型的交换器
+channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT, true);
+
+// 发送消息
+String message = &quot;hello world&quot;;
+channel.basicPublish(EXCHANGE_NAME, &quot;&quot;, null, message.getBytes(&quot;UTF-8&quot;));
+System.out.println(String.format(&quot;推送消息[%s]成功&quot;, message));
+</code></pre><p>我们可以看到 <code>basicPublish</code> 方法的第二个参数 <code>routinhKey</code> 为 <code>&quot;&quot;</code>。这里无论是否使用空字符串，效果都是一样的，因此直接使用 <code>&quot;&quot;</code> 即可</p>
+<h2 id="3-2-消费者接收消息"><a href="#3-2-消费者接收消息" class="headerlink" title="3.2 消费者接收消息"></a>3.2 消费者接收消息</h2><pre><code>// 创建交换器
+channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT, true);
+
+// 创建一个私有的临时的队列 exclusive=true auto-delete=true durable=false
+String queueName = channel.queueDeclare().getQueue();
+
+// 绑定队列到交换器
+channel.queueBind(queueName, EXCHANGE_NAME, &quot;&quot;);
+
+// 消费消息
+channel.basicConsume(queueName, true, deliverCallback, consumerTag -&gt; {});
+</code></pre><p>当然，你完全可以像之前那样定义一个持久性有固定名称的队列。但是，如果有需要 <em>（比如每次连接到broker都需要一个全新的队列）</em>，这时就可以使用方法 <code>channel.queueDeclare()</code> 创建一个随机的队列，该队列性质：<code>exclusive=true</code>，<code>auto-delete=true</code>，<code>durable=false</code><br></p>
+<p>这里还要说下 <code>queueBind()</code> 方法，可以看到该方法的第三个参数 <code>routingKey</code> 也是 <code>&quot;&quot;</code>。 就像我们之前说的那样，这里也是一样，无论是否使用空字符串效果都是一样的，因为 <code>fanout</code> 类型的交换器会把到达broker的消息发送给所有绑定到该交换器上的 <code>queue</code> 中 <em>(无论使用的routingKey是否是””)</em></p>
+
       
     </div>
 
@@ -574,8 +613,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -684,6 +732,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-知识回顾"><span class="nav-number">1.</span> <span class="nav-text">1 知识回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-应用场景"><span class="nav-number">2.</span> <span class="nav-text">2 应用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-进入正题"><span class="nav-number">3.</span> <span class="nav-text">3 进入正题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-生产者发送消息"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 生产者发送消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-消费者接收消息"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 消费者接收消息</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -731,6 +796,32 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
