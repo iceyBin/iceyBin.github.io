@@ -96,21 +96,18 @@
 
 
 
-  <meta name="description" content="Direct类型交换器-生产者confirm模式上篇文章简单入门了Direct交换器，如有需要请查看 Direct类型交换器-基础使用 1 prefetch属性的设置问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能者多劳呢？ 答案是：均匀分发消费。如果一个消费者有多个实例，那么到达这个消费者的消息会被broker">
+  <meta name="description" content="Direct交换器-基础使用1 建立连接，获取信道MQUtil.java // 建立到代理服务器的连接 public static Connection getConnection(String vhost) throws Exception {     ConnectionFactory connectionFactory = new ConnectionFactory();     facto">
 <meta name="keywords" content="RabbitMQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="3, Direct类型交换器-生产者confirm模式">
-<meta property="og:url" content="http://yoursite.com/2019/05/26/3-Direct类型交换器-生产者confirm模式/index.html">
+<meta property="og:title" content="Direct类型交换器-基础使用">
+<meta property="og:url" content="http://yoursite.com/2019/05/26/Direct类型交换器-基础使用/index.html">
 <meta property="og:site_name" content="Ice&#39;s Blog">
-<meta property="og:description" content="Direct类型交换器-生产者confirm模式上篇文章简单入门了Direct交换器，如有需要请查看 Direct类型交换器-基础使用 1 prefetch属性的设置问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能者多劳呢？ 答案是：均匀分发消费。如果一个消费者有多个实例，那么到达这个消费者的消息会被broker">
+<meta property="og:description" content="Direct交换器-基础使用1 建立连接，获取信道MQUtil.java // 建立到代理服务器的连接 public static Connection getConnection(String vhost) throws Exception {     ConnectionFactory connectionFactory = new ConnectionFactory();     facto">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/05/26/3-Direct类型交换器-生产者confirm模式/themes/next/source/images/loading.gif">
-<meta property="og:image" content="http://yoursite.com/2019/05/26/3-Direct类型交换器-生产者confirm模式/themes/next/source/images/loading.gif">
-<meta property="og:updated_time" content="2019-05-31T09:32:15.313Z">
+<meta property="og:updated_time" content="2019-06-04T02:34:28.013Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="3, Direct类型交换器-生产者confirm模式">
-<meta name="twitter:description" content="Direct类型交换器-生产者confirm模式上篇文章简单入门了Direct交换器，如有需要请查看 Direct类型交换器-基础使用 1 prefetch属性的设置问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能者多劳呢？ 答案是：均匀分发消费。如果一个消费者有多个实例，那么到达这个消费者的消息会被broker">
-<meta name="twitter:image" content="http://yoursite.com/2019/05/26/3-Direct类型交换器-生产者confirm模式/themes/next/source/images/loading.gif">
+<meta name="twitter:title" content="Direct类型交换器-基础使用">
+<meta name="twitter:description" content="Direct交换器-基础使用1 建立连接，获取信道MQUtil.java // 建立到代理服务器的连接 public static Connection getConnection(String vhost) throws Exception {     ConnectionFactory connectionFactory = new ConnectionFactory();     facto">
 
 
 
@@ -118,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/05/26/3-Direct类型交换器-生产者confirm模式/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/26/Direct类型交换器-基础使用/">
 
 
 
@@ -128,7 +125,7 @@
   };
 </script>
 
-  <title>3, Direct类型交换器-生产者confirm模式 | Ice's Blog</title>
+  <title>Direct类型交换器-基础使用 | Ice's Blog</title>
   
 
 
@@ -377,7 +374,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/3-Direct类型交换器-生产者confirm模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/Direct类型交换器-基础使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice">
@@ -394,7 +391,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">3, Direct类型交换器-生产者confirm模式
+          <h1 class="post-title" itemprop="name headline">Direct类型交换器-基础使用
 
               
             
@@ -420,7 +417,7 @@
                 
               
 
-              <time title="创建时间：2019-05-26 17:29:29" itemprop="dateCreated datePublished" datetime="2019-05-26T17:29:29+08:00">2019-05-26</time>
+              <time title="创建时间：2019-05-26 16:13:49" itemprop="dateCreated datePublished" datetime="2019-05-26T16:13:49+08:00">2019-05-26</time>
             
 
             
@@ -437,7 +434,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-31 17:32:15" itemprop="dateModified" datetime="2019-05-31T17:32:15+08:00">2019-05-31</time>
+                <time title="修改时间：2019-06-04 10:34:28" itemprop="dateModified" datetime="2019-06-04T10:34:28+08:00">2019-06-04</time>
               
             
           </span>
@@ -496,50 +493,76 @@
       
 
       
-        <h1 id="Direct类型交换器-生产者confirm模式"><a href="#Direct类型交换器-生产者confirm模式" class="headerlink" title="Direct类型交换器-生产者confirm模式"></a>Direct类型交换器-生产者confirm模式</h1><p>上篇文章简单入门了Direct交换器，如有需要请查看 <a href="https://iceybin.github.io/2019/05/26/2-Direct%E7%B1%BB%E5%9E%8B%E4%BA%A4%E6%8D%A2%E5%99%A8-%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/#more" target="_blank" rel="noopener">Direct类型交换器-基础使用</a></p>
-<h2 id="1-prefetch属性的设置"><a href="#1-prefetch属性的设置" class="headerlink" title="1 prefetch属性的设置"></a>1 prefetch属性的设置</h2><p>问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能者多劳呢？</p>
-<p>答案是：<strong>均匀分发消费</strong>。如果一个消费者有多个实例，那么到达这个消费者的消息会被broker进行均匀的分发消费，这是broker默认的机制。当然，实际应用中，会有很多的条件导致该消费者的多个实例的消费能力不同 <em>(比如机器配置不同、网络带宽影响等等)</em>，这时我们理想的情况是”能者多劳”。这时，我们只需要调用 <code>basicQos</code> 方法这时 <code>prefetch = 1</code> 即可 ，即可达到理想效果 <em>(这也是springBoot集成rabbitMQ的默认配置)</em>。这样设置的情况下，如果某个消费者实例消费能力比较弱，在收到 <code>ack</code> 确认之前，broker不会再分发消息到该实例</p>
-<pre><code>int prefetchCount = 1;
-channel.basicQos(prefetchCount);
-</code></pre><h2 id="2-生产者confirm模式"><a href="#2-生产者confirm模式" class="headerlink" title="2 生产者confirm模式"></a>2 生产者confirm模式</h2><p>上篇文章说到，消费者可以采用手动 <code>ack</code> 确认的模式尽量的防止消息的丢失。但是，这样真的就达到目的了吗？当然不是，试想，如果生产者的消息根本就没有到达broker呢？要解决这个问题，就需要用到<strong>生产者confirm模式</strong></p>
-<h3 id="2-1-设置channel为confirm模式"><a href="#2-1-设置channel为confirm模式" class="headerlink" title="2.1 设置channel为confirm模式"></a>2.1 设置channel为confirm模式</h3><pre><code>// 将信道设置为confirm模式
-channel.confirmSelect();
-</code></pre><p>broker如果接收到消息会进行回调，生产者有两种方式可以进行消息发送成功以及失败的后续处理，分别是<strong>手动逐条确认</strong>和<strong>异步监听确认</strong></p>
-<h3 id="2-2-手动逐条确认"><a href="#2-2-手动逐条确认" class="headerlink" title="2.2 手动逐条确认"></a>2.2 手动逐条确认</h3><p>每次发送消息后进行确认</p>
-<pre><code>if (channel.waitForConfirms()) {
-    System.out.println(String.format(&quot;推送消息[%s]成功&quot;, message));
-} else {
-    System.out.println(String.format(&quot;推送消息[%s]失败，消息丢失&quot;, message));
+        <h1 id="Direct交换器-基础使用"><a href="#Direct交换器-基础使用" class="headerlink" title="Direct交换器-基础使用"></a>Direct交换器-基础使用</h1><h2 id="1-建立连接，获取信道"><a href="#1-建立连接，获取信道" class="headerlink" title="1 建立连接，获取信道"></a>1 建立连接，获取信道</h2><p><strong>MQUtil.java</strong></p>
+<pre><code>// 建立到代理服务器的连接
+public static Connection getConnection(String vhost) throws Exception {
+    ConnectionFactory connectionFactory = new ConnectionFactory();
+    factory.setHost(&quot;localhost&quot;);
+    factory.setUsername(&quot;admin&quot;);
+    factory.setPassword(&quot;admin&quot;);
+    if (!StringUtils.isEmpty(vhost)) {
+        connectionFactory.setVirtualHost(vhost);
+    }
+    return connectionFactory.newConnection();
 }
-</code></pre><h3 id="2-3-异步监听确认"><a href="#2-3-异步监听确认" class="headerlink" title="2.3 异步监听确认"></a>2.3 异步监听确认</h3><p>还可以通过添加监听进行异步确认。改方式的优点是：<strong>异步、可以批量确认</strong></p>
-<pre><code>channel.addConfirmListener(new ConfirmListener() {
-    @Override
-    public void handleAck(long deliveryTag, boolean multiple) throws IOException {
-        System.out.println(String.format(&quot;MQ接收消息[%s:%b]成功&quot;, deliveryTag, multiple));
-    }
+</code></pre><p>后续的动作都是用channel来完成，使用try-resource包装，使得connection和channel可以自动关闭</p>
+<pre><code>try (Connection connection = MQUtil.getConnection(); Channel channel = connection.createChannel()) {...}
+</code></pre><h2 id="2-生产者推送消息"><a href="#2-生产者推送消息" class="headerlink" title="2 生产者推送消息"></a>2 生产者推送消息</h2><p>生产者推送消息到MQ只需要<strong>RoutingKey</strong>和<strong>Exchange</strong>即可：</p>
+<pre><code>// 定义交换器. durable标识是否持久化
+channel.exchangeDeclare(exchange, BuiltinExchangeType.DIRECT, durable);
 
-    @Override
-    public void handleNack(long deliveryTag, boolean multiple) throws IOException {
-        System.out.println(String.format(&quot;MQ接收消息[%s:%b]失败，消息丢失&quot;, deliveryTag, multiple));
-    }
+// 推送消息
+channel.basicPublish(exchange, routingKey, props, body);
+</code></pre><p>方法参数意义：</p>
+<ul>
+<li>exchange: 使用的交换器名称，如果使用默认的交换器，此处使用空字符串 <code>&quot;&quot;</code></li>
+<li>routingKey: 消息指定的RoutingKey，MQ会通过该RoutingKey将消息分发到通过该值绑定的队列中</li>
+<li>props: 该参数的类型是 <code>BasicProperties</code> 主要用来设置消息的一些信息，如contentType、headers等。 <code>MessageProperties</code> 是获取 <code>BasicProperties</code> 对象的一个工具类，只要用来获取不同类型的信息</li>
+<li>body: 消息本身内容，类型是 <code>byte[]</code></li>
+</ul>
+<h2 id="3-消费者消费消息"><a href="#3-消费者消费消息" class="headerlink" title="3 消费者消费消息"></a>3 消费者消费消息</h2><h3 id="3-1-定义交换器和队列"><a href="#3-1-定义交换器和队列" class="headerlink" title="3.1 定义交换器和队列"></a>3.1 定义交换器和队列</h3><p>消费消息时不需要将 <code>Connection</code> 和 <code>Channel</code> 进行 <code>try-resource</code> 封装，因为消费者需要循环的监控接收消息，因此不能关闭信道和连接</p>
+<pre><code>// 定义交换器    
+channel.exchangeDeclare(exchange, type, durable);
+
+// 定义队列
+channel.queueDeclare(quueName, true, false, false, null);
+
+// 将队列通过RoutingKey绑定到交换器上
+channel.queueBind(queue, exchange, routingKey);
+</code></pre><p>这里主要看下 <code>queueDeclare</code> 方法，该方法的定义如下：</p>
+<pre><code>Queue.DeclareOk queueDeclare(String queue, boolean durable, boolean exclusive, boolean autoDelete,Map&lt;String, Object&gt; arguments) throws IOException;
+</code></pre><ul>
+<li>queue: 队列名称</li>
+<li>durable: 是否持久化</li>
+<li>exclusive: 是否排他，如果设置为true，则表示只能用于创建其的连接中，不能用于另外的连接<em>(例如：如果有两个客户端同时都是新创建连接，然后定义相同的一个 <code>exclusive</code> 属性为<strong>true</strong>的队列，则只有其中的一个能成功启动，另外一个启动会报错)</em>。 并且，当连接关闭或者断开的时候，该队列会被自动删除 <em>(即使定义的队列是持久化的)</em></li>
+<li>autoDelete: 是否自动删除。 如果设置为<strong>true</strong>，则当没有消费者使用这个队列的时候，这个队列会被自动删除</li>
+</ul>
+<h3 id="3-2-消费消息"><a href="#3-2-消费消息" class="headerlink" title="3.2 消费消息"></a>3.2 消费消息</h3><pre><code>// 消费者成功接收到消息，消费回调函数
+DeliverCallback deliverCallback = (consumerTag, message) -&gt; {
+    String receiveMsg = new String(message.getBody());
+    // 手动确认消息的接收
+    channel.basicAck(message.getEnvelope().getDeliveryTag(), false);
+};
+
+// 消费消息
+channel.basicConsume(QUEUE_NAME, deliverCallback, (consumerTag) -&gt; {
+    System.err.println(String.format(&quot;系统异常，消费者[%s]不能正常消费消息&quot;, consumerTag));
 });
-</code></pre><p>我们来看下异步确认程序的执行结果：</p>
-<pre><code>MQ接收消息[2:true]成功
-MQ接收消息[3:false]成功
-MQ接收消息[4:false]成功
-MQ接收消息[5:false]成功
-MQ接收消息[6:false]成功
-</code></pre><p>从执行结果中可以看出，是否批量确认在于返回的multiple的参数，此参数为bool值。有时 <code>multiple</code> 返回的是 <strong>true</strong>，这说明批量确认了  响应的 <code>deliveryTag</code> 标识的该条消息之前的所有消息，返回 <code>false</code> 表示单条确认对应的 <code>deliveryTag</code> 这条消息。可以看到使用这种模式 <code>deliveryTag</code> 会从1依次递增标识消息。</p>
-<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3 总结"></a>3 总结</h1><ol>
-<li>一般情况下消费者会使用 <code>channel.basicQos(int prefetch)</code> 方法设置prefetch为1，达到同个消费者多个实例之间”能者多劳”的目的</li>
-<li>为了尽量的保证避免消息的丢失，应该同时采用<strong>消费者手动ack</strong>和<strong>生产者confirm模式</strong></li>
-<li>虽然rabbitMQ还有事务机制保证生产者发送的消息一定会到达broker，但是本身性能受损比较严重，不建议使用，有兴趣的可以另行查找资料</li>
+</code></pre><p>需要注意的是 <code>basicAck</code> 方法的第二个参数，这个参数标识是否要批量确认。如果设置为 <code>true</code> 则会批量确认所有该channel中已经到达MQ服务器的消息；如果设置为 <code>false</code>，则只确认指定的deliverTag对应的消息。</p>
+<p>再来看下消费消息的函数 <code>basicConsume</code> 定义如下：</p>
+<pre><code>String basicConsume(String queue, DeliverCallback deliverCallback, CancelCallback cancelCallback) throws IOException; 
+</code></pre><p><strong>该方法是一个无限循环阻塞方法，会循环获取绑定的队列中的消息</strong></p>
+<ul>
+<li>queue：队列名称。 指定消费者从哪个队列中消费消息</li>
+<li>deliverCallback: 消费者成功接收MQ推送的消息的回调函数，主要在该函数中进行消息的处理以及手动ack。该函数有个重载，多了一个 <code>autoAck</code> 参数，标识是否自动确认消息的接收。如果设置为 <strong>true</strong> 则当消费者正常接收到消息就会向MQ自动确认，MQ就会将该消息从消息队列中删除<em>(即使消息后续没有被成功消费)</em>， 默认false，一般情况下都会使用默认false。 如果设置为 <code>false</code> 就需要在 <code>deliverCallback</code> 回调函数中进行手动确认。</li>
+<li>cancelCallback: 当MQ服务出现问题，导致不能正常消费消息 <em>(比如：队列被删除等)</em>，则会调用该回调函数。此外，消费者也可以调用 <code>channel.basicAck</code> 手动取消该消费者 </li>
+</ul>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h1><ol>
+<li>生产者推送消息只需要 <strong>RoutingKey</strong> 和 <strong>Exchange</strong></li>
+<li>消费者建议手动 <code>ack</code> 确认，尽量保证消息不丢失</li>
+<li>笔者建议生产者和消费者双方都需要进行创建队列的工作，因为不确定哪一方先启动</li>
+<li>如果想要消息的持久化，必须保证交换器持久化、队列持久化</li>
 </ol>
-<h1 id="4-扩展"><a href="#4-扩展" class="headerlink" title="4 扩展"></a>4 扩展</h1><p><code>Direct</code> 类型交换器和队列的绑定是通过 <code>RoutingKey</code> 来完成的，<code>RoutingKey</code> 和 <code>queue</code> 的关系不只是<strong>一对一</strong>的关系，还可以是<strong>一对多</strong>，<strong>多对一</strong>关系。<strong>注：以下情况每个队列对应一个消费者</strong></p>
-<p><img src="./themes/next/source/images/loading.gif" data-original="/../img/201905/direct-1-n.png" alt="direct交换器RK1-queuen"></p>
-<p><strong>一对多</strong>模型，一个 <code>RoutingKey</code> 可以绑定多个不同的 <code>queue</code> <em>（假设名称为q1，q2，q3）</em> 到broker上，q1，q2，q3对应的消费者分别为 c1、c2和c3。这种情况下，如果生产者通过该 <code>RoutingKey</code> 发送消息，则c1、c2和c3都会收到相同的消息</p>
-<p><img src="./themes/next/source/images/loading.gif" data-original="/../img/201905/direct-n-1.png" alt="direct交换器RKn-queue1"></p>
-<p><strong>多对一</strong>模型，多个不同的 <code>RoutingKey</code> <em>（假设名称为rk1，rk2，rk3）</em> 可以绑定同一个 <code>queue</code> 到broker上，该队列对应的消费者是 <code>c1</code> 。这种情况下，如果生产者通过rk1，rk2，rk3中的任意一个发送消息，则 <code>c1</code> 都会接收到消息</p>
 
       
     </div>
@@ -576,8 +599,8 @@ MQ接收消息[6:false]成功
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/26/2-Direct类型交换器-基础使用/" rel="next" title="2, Direct类型交换器-基础使用">
-                <i class="fa fa-chevron-left"></i> 2, Direct类型交换器-基础使用
+              <a href="/2019/05/26/初识RabbitMQ/" rel="next" title="初识RabbitMQ">
+                <i class="fa fa-chevron-left"></i> 初识RabbitMQ
               </a>
             
           </div>
@@ -586,8 +609,8 @@ MQ接收消息[6:false]成功
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/27/4-Fanout交换器/" rel="prev" title="4，Fanout交换器">
-                4，Fanout交换器 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/26/Direct类型交换器-生产者confirm模式/" rel="prev" title="Direct类型交换器-生产者confirm模式">
+                Direct类型交换器-生产者confirm模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -761,7 +784,7 @@ MQ接收消息[6:false]成功
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Direct类型交换器-生产者confirm模式"><span class="nav-number">1.</span> <span class="nav-text">Direct类型交换器-生产者confirm模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-prefetch属性的设置"><span class="nav-number">1.1.</span> <span class="nav-text">1 prefetch属性的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-生产者confirm模式"><span class="nav-number">1.2.</span> <span class="nav-text">2 生产者confirm模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-设置channel为confirm模式"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 设置channel为confirm模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-手动逐条确认"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 手动逐条确认</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-异步监听确认"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 异步监听确认</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-总结"><span class="nav-number">2.</span> <span class="nav-text">3 总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-扩展"><span class="nav-number">3.</span> <span class="nav-text">4 扩展</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Direct交换器-基础使用"><span class="nav-number">1.</span> <span class="nav-text">Direct交换器-基础使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-建立连接，获取信道"><span class="nav-number">1.1.</span> <span class="nav-text">1 建立连接，获取信道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-生产者推送消息"><span class="nav-number">1.2.</span> <span class="nav-text">2 生产者推送消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-消费者消费消息"><span class="nav-number">1.3.</span> <span class="nav-text">3 消费者消费消息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-定义交换器和队列"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 定义交换器和队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-消费消息"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 消费消息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-总结"><span class="nav-number">2.</span> <span class="nav-text">4 总结</span></a></li></ol></div>
             
 
           </div>
