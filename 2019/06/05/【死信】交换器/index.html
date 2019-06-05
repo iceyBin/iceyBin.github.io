@@ -96,17 +96,18 @@
 
 
 
-  <meta name="description" content="Coding, Travelling, Learning and Enjoying">
-<meta name="keywords" content="java">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ice&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="1 “死信”交换器介绍“死信”交换器跟普通的各种类型的交换器是一样的，你完全可以像定义普通交换器那样定义它。 当消息变为”死信”的时候，就会被转发到设置的对应的”死信”交换器上。 那么消息在什么情况下会变成”死信”呢？  当消息被消费者使用 basic.reject 或者 basic.nack 拒绝，并且 requeue 参数设置为 false, 即被拒绝但是要求不要重新入队的消息 消息由于设置了">
+<meta name="keywords" content="RabbitMQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【死信】交换器">
+<meta property="og:url" content="http://yoursite.com/2019/06/05/【死信】交换器/index.html">
 <meta property="og:site_name" content="Ice&#39;s Blog">
-<meta property="og:description" content="Coding, Travelling, Learning and Enjoying">
+<meta property="og:description" content="1 “死信”交换器介绍“死信”交换器跟普通的各种类型的交换器是一样的，你完全可以像定义普通交换器那样定义它。 当消息变为”死信”的时候，就会被转发到设置的对应的”死信”交换器上。 那么消息在什么情况下会变成”死信”呢？  当消息被消费者使用 basic.reject 或者 basic.nack 拒绝，并且 requeue 参数设置为 false, 即被拒绝但是要求不要重新入队的消息 消息由于设置了">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-05T09:43:43.936Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ice&#39;s Blog">
-<meta name="twitter:description" content="Coding, Travelling, Learning and Enjoying">
+<meta name="twitter:title" content="【死信】交换器">
+<meta name="twitter:description" content="1 “死信”交换器介绍“死信”交换器跟普通的各种类型的交换器是一样的，你完全可以像定义普通交换器那样定义它。 当消息变为”死信”的时候，就会被转发到设置的对应的”死信”交换器上。 那么消息在什么情况下会变成”死信”呢？  当消息被消费者使用 basic.reject 或者 basic.nack 拒绝，并且 requeue 参数设置为 false, 即被拒绝但是要求不要重新入队的消息 消息由于设置了">
 
 
 
@@ -114,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/05/【死信】交换器/">
 
 
 
@@ -124,7 +125,7 @@
   };
 </script>
 
-  <title>Ice's Blog</title>
+  <title>【死信】交换器 | Ice's Blog</title>
   
 
 
@@ -172,8 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -215,7 +215,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -355,9 +355,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -366,178 +366,7 @@
   
 
   
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/05/队列的一些特性/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="Coding, Travelling, Learning and Enjoying">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ice's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/05/队列的一些特性/" class="post-title-link" itemprop="url">队列的一些特性</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-05 17:42:12 / 修改时间：17:42:59" itemprop="dateCreated datePublished" datetime="2019-06-05T17:42:12+08:00">2019-06-05</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/中间件/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              队列的长度限制队列可以被设置大小，包括：队列中最大容纳的消息数目以及队列中容纳消息的最大总字节数。这两个值可以通过队列的参数 (x-max-length 和 x-max-length-bytes) 以及 policy (max-length 和 max-length-bytes) 来设置。 
-
-ma
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/05/队列的一些特性/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
+    <div class="reading-progress-bar"></div>
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -562,10 +391,8 @@ ma
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/05/【死信】交换器/" class="post-title-link" itemprop="url">【死信】交换器</a>
+          <h1 class="post-title" itemprop="name headline">【死信】交换器
+
               
             
           </h1>
@@ -629,181 +456,15 @@ ma
           
 
           
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              1 “死信”交换器介绍“死信”交换器跟普通的各种类型的交换器是一样的，你完全可以像定义普通交换器那样定义它。 当消息变为”死信”的时候，就会被转发到设置的对应的”死信”交换器上。 那么消息在什么情况下会变成”死信”呢？
-
-当消息被消费者使用 basic.reject 或者 basic.nack 拒绝
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/05/【死信】交换器/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/04/TTL和过期时间/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="Coding, Travelling, Learning and Enjoying">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ice's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/04/TTL和过期时间/" class="post-title-link" itemprop="url">TTL和过期时间</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-04 10:37:41 / 修改时间：15:40:24" itemprop="dateCreated datePublished" datetime="2019-06-04T10:37:41+08:00">2019-06-04</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/中间件/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a></span>
-
-                
-                
-              
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
           
-            
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
@@ -820,22 +481,50 @@ ma
       
 
       
-        
-          
-            <p>
-              1 TTL介绍TTL全称Time-To-Live，即存活时间。在RabbitMQ中有两种TTL，分别是 Message TTL 和 Queue TTL。TTL可以通过参数设置，也可以通过 policies 策略设置 message-ttl 参数，推荐使用 policies 可以通过正则表达式为一个或
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/04/TTL和过期时间/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+        <h1 id="1-“死信”交换器介绍"><a href="#1-“死信”交换器介绍" class="headerlink" title="1 “死信”交换器介绍"></a>1 “死信”交换器介绍</h1><p>“死信”交换器跟普通的各种类型的交换器是一样的，你完全可以像定义普通交换器那样定义它。 当消息变为”死信”的时候，就会被转发到设置的对应的”死信”交换器上。 那么消息在什么情况下会变成”死信”呢？</p>
+<ol>
+<li>当消息被消费者使用 <code>basic.reject</code> 或者 <code>basic.nack</code> 拒绝，并且 <code>requeue</code> 参数设置为 <code>false</code>, 即被拒绝但是要求不要重新入队的消息</li>
+<li>消息由于设置了TTL导致过期，这种情况下消息变为”死信”消息后，其原来的过期属性 <code>expiration</code> 会被移除，防止再次过期</li>
+<li>消息对应的队列设置了队列大小限制，超过限制被丢弃的消息。 这种情况下，<code>overflow</code> 参数必须是默认的 <code>drop-head</code> 超出限制的消息才会被认为是”死信”消息，进而被推送到”死信”交换器上；如果设置为 <code>reject-public</code> 则不会被认为是”死信”消息</li>
+</ol>
+<p><strong>请注意：当为队列设置了TTL时间，队列过期了，但是里面的消息并不会被看做”死信”消息</strong></p>
+<h1 id="2-“死信”交换器的设置"><a href="#2-“死信”交换器的设置" class="headerlink" title="2 “死信”交换器的设置"></a>2 “死信”交换器的设置</h1><p>可以通过设置队列的相应参数来控制该队列中”死信”消息需要转发到的具体的”死信”交换器，设置参数的方法有两种：通过定义队列是设置队列参数以及通过 <code>policies</code> 来控制</p>
+<blockquote>
+<p>使用 <code>policies</code> 来控制</p>
+</blockquote>
+<p>设置 <code>dead-letter-exchange</code> 属性，指定具体的”死信”交换器。 也可以设置 <code>dead-letter-routing-key</code> 属性来控制推送消息到指定的”死信”队列时使用的 <code>RoutingKey</code>，如果没有设置，则默认会使用该消息本身已经拥有的 <code>RoutingKey</code> 来路由消息 </p>
+<pre><code>rabbitmqctl set_policy DLX &quot;.*&quot; &apos;{&quot;dead-letter-exchange&quot;:&quot;my-dlx&quot;}&apos; --apply-to queues
+</code></pre><blockquote>
+<p>使用队列参数控制</p>
+</blockquote>
+<p>定义队列时使用队列参数定义：设置 <code>x-dead-letter-exchange</code> 和  <code>x-dead-letter-routing-key</code> 参数。</p>
+<p>“死信”消息的 <code>headers</code> 中法跟其他消息有所不同，其 <code>headers</code> 如下：</p>
+<pre><code>{
+    x-first-death-exchange=test-dead-exchange, 
+    x-first-death-reason=expired, 
+    x-first-death-queue=test-dead-queue-001,
+    x-death=[{
+        reason=expired, 
+        original-expiration=3000, 
+        count=1, 
+        exchange=test-dead-exchange, 
+        time=Wed Jun 05 15:24:12 CST 2019, 
+        routing-keys=[RK-DEAD-LETTER-001], 
+        queue=test-dead-queue-001}
+    ]
+}
+</code></pre><p>“死信”消息会在 <code>headers</code> 中添加一个名为 <code>x-death</code> 的数组，数组中的key字段意义大致如下：</p>
+<ol>
+<li><code>reason</code>：成为”死信”消息的原因，其值有：<code>expired</code>、<code>rejected</code>、<code>maxlen</code></li>
+<li><code>original-expiration</code>: 该消息原来定义的超时时间</li>
+<li><code>count</code>：该消息在当前这个队列中由于当前这个原因被”死信”的次数</li>
+<li><code>exchange</code>：该消息原来所在的交换器</li>
+<li><code>time</code>：成为”死信”消息的时间</li>
+<li><code>routing-keys</code>：该消息对应的RK</li>
+<li><code>queue</code>：该消息原来所在的队列</li>
+</ol>
+<p>除此之外，还增加有 <code>x-first-death-exchange</code>，<code>x-first-death-reason</code> 和 <code>x-first-death-queue</code> 三个属性，从命名上就可以知道，这三个标识的是该消息首次成为”死信”消息对应的 <code>x-death</code> 中的 <code>exchange</code>，<code>reason</code>，<code>queue</code>三个值，不同的是这三个值后续不会再改变。 当成为”死信”消息到达对应的”死信”队列后，如果记录进行处理推送，如果再次变成”死信”则 <code>x-death</code> 字段中就会有多个对象出现，<code>count</code> 值就会相应增加</p>
+
       
     </div>
 
@@ -856,387 +545,40 @@ ma
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/Topic交换器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="Coding, Travelling, Learning and Enjoying">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ice's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/03/Topic交换器/" class="post-title-link" itemprop="url">Topic交换器</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-03 11:00:11" itemprop="dateCreated datePublished" datetime="2019-06-03T11:00:11+08:00">2019-06-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-04 10:34:32" itemprop="dateModified" datetime="2019-06-04T10:34:32+08:00">2019-06-04</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/中间件/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/RabbitMQ/" rel="tag"># RabbitMQ</a>
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-            <p>
-              上次文章说到 Fanout交换器，有兴趣的可以参考：Fanout交换器
-1 应用场景当需要“分类”推送消息的时候，就会用到 topic 类型的交换器。例如：推送日志信息，需要将系统日志和普通日志分类推送给不同的队列；当然使用前面说到的 direct 类型交换器和 fanout交换器也可以实现，但是比
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/03/Topic交换器/#more" rel="contents">
-                阅读全文 &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/04/TTL和过期时间/" rel="next" title="TTL和过期时间">
+                <i class="fa fa-chevron-left"></i> TTL和过期时间
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/Fanout交换器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="Coding, Travelling, Learning and Enjoying">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ice's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/27/Fanout交换器/" class="post-title-link" itemprop="url">Fanout交换器</a>
-              
             
-          </h1>
-        
+          </div>
 
-        <div class="post-meta">
-          <span class="post-time">
+          <span class="post-nav-divider"></span>
 
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/06/05/队列的一些特性/" rel="prev" title="队列的一些特性">
+                队列的一些特性 <i class="fa fa-chevron-right"></i>
+              </a>
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-27 17:41:47" itemprop="dateCreated datePublished" datetime="2019-05-27T17:41:47+08:00">2019-05-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-04 10:34:36" itemprop="dateModified" datetime="2019-06-04T10:34:36+08:00">2019-06-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/中间件/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>
-              1 知识回顾通过之前 direct 交换器的学习，我们已经对rabbitMQ消息传递机制有了一定的了解，可以总结为以下几点：
-
-生产者是生产并发送消息的应用程序
-队列是消息的缓冲区，用来存放消息
-消费者是接收并消费消息的应用程序
-
-我们知道，broker是生产者和消费者之前的”桥梁”，接收生产者消息
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/27/Fanout交换器/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1246,567 +588,15 @@ ma
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/Direct类型交换器-生产者confirm模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="Coding, Travelling, Learning and Enjoying">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ice's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/26/Direct类型交换器-生产者confirm模式/" class="post-title-link" itemprop="url">Direct类型交换器-生产者confirm模式</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-26 17:29:29" itemprop="dateCreated datePublished" datetime="2019-05-26T17:29:29+08:00">2019-05-26</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-04 10:34:40" itemprop="dateModified" datetime="2019-06-04T10:34:40+08:00">2019-06-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/中间件/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              Direct类型交换器-生产者confirm模式上篇文章简单入门了Direct交换器，如有需要请查看 Direct类型交换器-基础使用
-1 prefetch属性的设置问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/26/Direct类型交换器-生产者confirm模式/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/Direct类型交换器-基础使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="Coding, Travelling, Learning and Enjoying">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ice's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/26/Direct类型交换器-基础使用/" class="post-title-link" itemprop="url">Direct类型交换器-基础使用</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-26 16:13:49" itemprop="dateCreated datePublished" datetime="2019-05-26T16:13:49+08:00">2019-05-26</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-04 10:34:28" itemprop="dateModified" datetime="2019-06-04T10:34:28+08:00">2019-06-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/中间件/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              Direct交换器-基础使用1 建立连接，获取信道MQUtil.java
-// 建立到代理服务器的连接
-public static Connection getConnection(String vhost) throws Exception {
-    ConnectionFactory conn
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/26/Direct类型交换器-基础使用/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/初识RabbitMQ/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="Coding, Travelling, Learning and Enjoying">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ice's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/26/初识RabbitMQ/" class="post-title-link" itemprop="url">初识RabbitMQ</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-26 15:13:49" itemprop="dateCreated datePublished" datetime="2019-05-26T15:13:49+08:00">2019-05-26</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-04 10:36:18" itemprop="dateModified" datetime="2019-06-04T10:36:18+08:00">2019-06-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/中间件/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/26/初识RabbitMQ/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -1826,8 +616,17 @@ public static Connection getConnection(String vhost) throws Exception {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1935,6 +734,23 @@ public static Connection getConnection(String vhost) throws Exception {
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-“死信”交换器介绍"><span class="nav-number">1.</span> <span class="nav-text">1 “死信”交换器介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-“死信”交换器的设置"><span class="nav-number">2.</span> <span class="nav-text">2 “死信”交换器的设置</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -2107,6 +923,10 @@ public static Connection getConnection(String vhost) throws Exception {
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
 
   
 
@@ -2122,6 +942,8 @@ public static Connection getConnection(String vhost) throws Exception {
 
   
 
+
+  
 
 
   
