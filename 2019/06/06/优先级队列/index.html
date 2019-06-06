@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="队列的长度限制队列可以被设置大小，包括：队列中最大容纳的消息数目以及队列中容纳消息的最大总字节数。这两个值可以通过队列的参数 (x-max-length 和 x-max-length-bytes) 以及 policy (max-length 和 max-length-bytes) 来设置。   max-length | x-max-length 表示队列中容纳的最多消息个数 max-length-">
+  <meta name="description" content="优先级队列从 3.5.0 版本开始，RabbitMQ提供了优先级队列的实现。如果要实现优先级队列需要两部操作即可：  通过队列参数定义具有优先级性质的队列  ... Map&amp;lt;String, Object&amp;gt; arguments = new HashMap&amp;lt;String, Object&amp;gt;(); arguments.put(&amp;quot;x-max-priority&amp;quot;,">
 <meta name="keywords" content="RabbitMQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="队列的一些特性">
-<meta property="og:url" content="http://yoursite.com/2019/06/05/队列的一些特性/index.html">
+<meta property="og:title" content="优先级队列">
+<meta property="og:url" content="http://yoursite.com/2019/06/06/优先级队列/index.html">
 <meta property="og:site_name" content="Ice&#39;s Blog">
-<meta property="og:description" content="队列的长度限制队列可以被设置大小，包括：队列中最大容纳的消息数目以及队列中容纳消息的最大总字节数。这两个值可以通过队列的参数 (x-max-length 和 x-max-length-bytes) 以及 policy (max-length 和 max-length-bytes) 来设置。   max-length | x-max-length 表示队列中容纳的最多消息个数 max-length-">
+<meta property="og:description" content="优先级队列从 3.5.0 版本开始，RabbitMQ提供了优先级队列的实现。如果要实现优先级队列需要两部操作即可：  通过队列参数定义具有优先级性质的队列  ... Map&amp;lt;String, Object&amp;gt; arguments = new HashMap&amp;lt;String, Object&amp;gt;(); arguments.put(&amp;quot;x-max-priority&amp;quot;,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-05T09:42:59.683Z">
+<meta property="og:updated_time" content="2019-06-06T08:05:58.802Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="队列的一些特性">
-<meta name="twitter:description" content="队列的长度限制队列可以被设置大小，包括：队列中最大容纳的消息数目以及队列中容纳消息的最大总字节数。这两个值可以通过队列的参数 (x-max-length 和 x-max-length-bytes) 以及 policy (max-length 和 max-length-bytes) 来设置。   max-length | x-max-length 表示队列中容纳的最多消息个数 max-length-">
+<meta name="twitter:title" content="优先级队列">
+<meta name="twitter:description" content="优先级队列从 3.5.0 版本开始，RabbitMQ提供了优先级队列的实现。如果要实现优先级队列需要两部操作即可：  通过队列参数定义具有优先级性质的队列  ... Map&amp;lt;String, Object&amp;gt; arguments = new HashMap&amp;lt;String, Object&amp;gt;(); arguments.put(&amp;quot;x-max-priority&amp;quot;,">
 
 
 
@@ -115,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/06/05/队列的一些特性/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/06/优先级队列/">
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>队列的一些特性 | Ice's Blog</title>
+  <title>优先级队列 | Ice's Blog</title>
   
 
 
@@ -246,7 +246,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">1</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">2</span></a>
 
   </li>
         
@@ -284,7 +284,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">8</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">11</span></a>
 
   </li>
 
@@ -374,7 +374,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/05/队列的一些特性/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/06/优先级队列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice">
@@ -391,7 +391,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">队列的一些特性
+          <h1 class="post-title" itemprop="name headline">优先级队列
 
               
             
@@ -417,7 +417,7 @@
                 
               
 
-              <time title="创建时间：2019-06-05 17:42:12 / 修改时间：17:42:59" itemprop="dateCreated datePublished" datetime="2019-06-05T17:42:12+08:00">2019-06-05</time>
+              <time title="创建时间：2019-06-06 16:04:23 / 修改时间：16:05:58" itemprop="dateCreated datePublished" datetime="2019-06-06T16:04:23+08:00">2019-06-06</time>
             
 
             
@@ -481,28 +481,21 @@
       
 
       
-        <h2 id="队列的长度限制"><a href="#队列的长度限制" class="headerlink" title="队列的长度限制"></a>队列的长度限制</h2><p>队列可以被设置大小，包括：队列中最大容纳的消息数目以及队列中容纳消息的最大总字节数。这两个值可以通过队列的参数 (<code>x-max-length</code> 和 <code>x-max-length-bytes</code>) 以及 <code>policy</code> (<code>max-length</code> 和 <code>max-length-bytes</code>) 来设置。 </p>
-<ul>
-<li><code>max-length</code> | <code>x-max-length</code> 表示队列中容纳的最多消息<strong>个数</strong></li>
-<li><code>max-length-bytes</code> | <code>x-max-length-bytes</code> 表示队列中的消息最大<strong>总字节数</strong></li>
-</ul>
-<p>默认情况下，当设置了容量的队列中的消息达到了设置的最大容量值后，队列会将处于队列前面的那些消息<em>(也就是比较旧的消息)</em> 移除或者放入”死信队列”。如果需要改变这种溢出处理策略，则可以通过队列参数 <code>overflow</code> 或者 <code>x-overflow</code> 进行修改。 </p>
-<ul>
-<li><code>overflow</code> | <code>x-overflow</code> 定义队列溢出后数据处理策略</li>
-</ul>
-<p>该参数有两个值 <code>drop-head</code> 和 <code>reject-publish</code>，默认是 <code>drop-head</code>。 如果被设置为 <code>reject-publish</code> 则如果收到新消息，则会直接拒绝并丢弃。如果这时生产者使用了 <code>publish confirm</code> 模式，则生产者会收到 <code>nack</code> 通知。 当一个生产者对应有多个消费者，如果其中一个消费者对应的队列满了，并且设置了 <code>overflow=reject-publish</code>，则生产者会收到 <code>nack</code> 通知</p>
-<h2 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h2><p>从 <code>3.5.0</code> 版本开始，RabbitMQ提供了优先级队列的实现。如果要实现优先级队列需要两部操作即可：</p>
+        <h2 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h2><p>从 <code>3.5.0</code> 版本开始，RabbitMQ提供了优先级队列的实现。如果要实现优先级队列需要两部操作即可：</p>
 <blockquote>
 <p>通过队列参数定义具有优先级性质的队列</p>
 </blockquote>
-<pre><code>Map&lt;String, Object&gt; arguments = new HashMap&lt;String, Object&gt;();
+<pre><code>...
+Map&lt;String, Object&gt; arguments = new HashMap&lt;String, Object&gt;();
 arguments.put(&quot;x-max-priority&quot;, 10);
 channel.queueDeclare(queueName, true, false, true, arguments);
+...
 </code></pre><p>通过设置队列参数 <code>x-max-priority</code> 设置队列的优先级，队列的优先级支持 <strong>0~255</strong> 的数值，推荐使用的范围是： <strong>1~10</strong>。 该属性设置的是该队列中的消息允许的 <strong>最大优先级数值</strong>，不支持使用 <code>policy</code> 设置，因为 <code>policy</code> 是可以随时更新改变的。</p>
 <blockquote>
 <p>生产者推送消息的时候设置 <code>AMQP.BasicProperties</code> 的 <code>priority</code> 为该消息具体的优先级数值</p>
 </blockquote>
-<pre><code>String[] messageAry = {&quot;hello&quot;, &quot;world&quot;, &quot;test&quot;};
+<pre><code>...
+String[] messageAry = {&quot;hello&quot;, &quot;world&quot;, &quot;test&quot;};
 for (String message : messageAry) {
     AMQP.BasicProperties.Builder basicPropertiesBuilder = new AMQP.BasicProperties().builder();
     if (&quot;test&quot;.equalsIgnoreCase(message)) {
@@ -512,6 +505,7 @@ for (String message : messageAry) {
     channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY, basicPropertiesBuilder.build(), message.getBytes());
     System.out.println(String.format(&quot;send message[%s] over&quot;, message));
 }
+...
 </code></pre><p>该数值范围为 <strong>0~255</strong> 默认不设置的时候是 <strong>0</strong>。 如果超过对应的队列中 <code>x-max-priority</code> 设置的最大值，则会被强制设置为 <code>x-max-priority</code> 指定的最大值</p>
 <blockquote>
 <p>如果使用优先级队列，你可能需要关注这些</p>
@@ -522,27 +516,6 @@ for (String message : messageAry) {
 <li><strong>当优先级和TTL同时使用时</strong>，可能会造成低优先级的已过期消息会被阻塞在高优先级未过期的消息后面，这些已过期的消息不会被传递给消费者，并且会计入队列的统计数据中</li>
 <li><strong>当优先级和队列最大限制一起使用时</strong>，可能会造成当队列达到最大限制时，还未消费的高优先级的消息被移除丢弃</li>
 </ul>
-<h2 id="队列懒加载"><a href="#队列懒加载" class="headerlink" title="队列懒加载"></a>队列懒加载</h2><p>RabbitMQ从<code>3.6.0</code> 版本开始，RabbitMQ引入了懒加载队列的概念</p>
-<blockquote>
-<p>RAM内存警报</p>
-</blockquote>
-<p> 默认情况下，RabbitMQ会时实时监控该服务使用内存的情况，当使用的内存超过服务所在计算机的总RAM内存的<strong>40%</strong>时，就会触发内存警报，此时RabbitMQ就会阻塞所有正在推送消息的连接直到内存警报解除。 出现内存警报时， RabbitMQ会将消息尽量的移出到硬盘上来解决RAM内存占用过多问题。 你可以通过修改配置文件来更改默认的阀值，<strong>默认是0.4，即 40%</strong></p>
-<pre><code>vm_memory_high_watermark.relative = 0.4
-</code></pre><p>当然，你也可以设置一个绝对的值，单位是：byte</p>
-<pre><code>vm_memory_high_watermark.absolute = 1073741824
-</code></pre><p>内存阀值也可以在broker运行期间通过命令行设置进行更改：</p>
-<ul>
-<li><code>rabbitmqctl set_vm_memory_high_watermark [fraction]</code>：设置相对值</li>
-<li><code>rabbitmqctl set_vm_memory_high_watermark absolute [memory_limit]</code>：设置绝对值</li>
-</ul>
-<p>如果想要立刻解决内存警报，全局停止所有的消息传送，那么可以设置内存阀值为 <code>0</code></p>
-<pre><code>rabbitmqctl set_vm_memory_high_watermark 0
-</code></pre><blockquote>
-<p>缩减RAM占用</p>
-</blockquote>
-<p>为了解决RAM内存占用过多的问题，RabbitMQ在内存占用达到上述设置的内存阀值的50%的时候，就会开始将消息内容从队列中移出到硬盘保存的工作 <em>(持久化消息在接收的时候就已经保存到硬盘，此时会清除持久化消息在RAM内存中的副本)</em>。 这个阀值也可以配置文件修改，默认值是0.5：</p>
-<pre><code>vm_memory_high_watermark_paging_ratio = 0.75
-</code></pre><p>该值也可以设置为一个大于 <code>1</code> 的数值，这时该值就不会起作用</p>
 
       
     </div>
@@ -579,8 +552,8 @@ for (String message : messageAry) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/05/【死信】交换器/" rel="next" title="【死信】交换器">
-                <i class="fa fa-chevron-left"></i> 【死信】交换器
+              <a href="/2019/06/05/队列的长度限制/" rel="next" title="队列的长度限制">
+                <i class="fa fa-chevron-left"></i> 队列的长度限制
               </a>
             
           </div>
@@ -588,6 +561,10 @@ for (String message : messageAry) {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/06/队列懒加载/" rel="prev" title="队列懒加载">
+                队列懒加载 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -658,7 +635,7 @@ for (String message : messageAry) {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -696,7 +673,9 @@ for (String message : messageAry) {
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -760,7 +739,7 @@ for (String message : messageAry) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#队列的长度限制"><span class="nav-number">1.</span> <span class="nav-text">队列的长度限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先级队列"><span class="nav-number">2.</span> <span class="nav-text">优先级队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列懒加载"><span class="nav-number">3.</span> <span class="nav-text">队列懒加载</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#优先级队列"><span class="nav-number">1.</span> <span class="nav-text">优先级队列</span></a></li></ol></div>
             
 
           </div>

@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="1 TTL介绍TTL全称Time-To-Live，即存活时间。在RabbitMQ中有两种TTL，分别是 Message TTL 和 Queue TTL。TTL可以通过参数设置，也可以通过 policies 策略设置 message-ttl 参数，推荐使用 policies 可以通过正则表达式为一个或者多个 queue 或者 exchange 定义TTL 2 Message TTL – TTL类型消">
+  <meta name="description" content="队列的长度限制队列可以被设置大小，包括：队列中最大容纳的消息数目以及队列中容纳消息的最大总字节数。这两个值可以通过队列的 x-args 参数以及 policy 来设置。 如果两者同时使用，则其中设置的较小值有效  max-length | x-max-length 表示队列中容纳的最多消息个数 max-length-bytes | x-max-length-bytes 表示队列中的消息最大总字节数">
 <meta name="keywords" content="RabbitMQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TTL和过期时间">
-<meta property="og:url" content="http://yoursite.com/2019/06/04/TTL和过期时间/index.html">
+<meta property="og:title" content="队列的长度限制">
+<meta property="og:url" content="http://yoursite.com/2019/06/05/队列的长度限制/index.html">
 <meta property="og:site_name" content="Ice&#39;s Blog">
-<meta property="og:description" content="1 TTL介绍TTL全称Time-To-Live，即存活时间。在RabbitMQ中有两种TTL，分别是 Message TTL 和 Queue TTL。TTL可以通过参数设置，也可以通过 policies 策略设置 message-ttl 参数，推荐使用 policies 可以通过正则表达式为一个或者多个 queue 或者 exchange 定义TTL 2 Message TTL – TTL类型消">
+<meta property="og:description" content="队列的长度限制队列可以被设置大小，包括：队列中最大容纳的消息数目以及队列中容纳消息的最大总字节数。这两个值可以通过队列的 x-args 参数以及 policy 来设置。 如果两者同时使用，则其中设置的较小值有效  max-length | x-max-length 表示队列中容纳的最多消息个数 max-length-bytes | x-max-length-bytes 表示队列中的消息最大总字节数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-04T07:40:24.853Z">
+<meta property="og:updated_time" content="2019-06-06T09:09:18.630Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TTL和过期时间">
-<meta name="twitter:description" content="1 TTL介绍TTL全称Time-To-Live，即存活时间。在RabbitMQ中有两种TTL，分别是 Message TTL 和 Queue TTL。TTL可以通过参数设置，也可以通过 policies 策略设置 message-ttl 参数，推荐使用 policies 可以通过正则表达式为一个或者多个 queue 或者 exchange 定义TTL 2 Message TTL – TTL类型消">
+<meta name="twitter:title" content="队列的长度限制">
+<meta name="twitter:description" content="队列的长度限制队列可以被设置大小，包括：队列中最大容纳的消息数目以及队列中容纳消息的最大总字节数。这两个值可以通过队列的 x-args 参数以及 policy 来设置。 如果两者同时使用，则其中设置的较小值有效  max-length | x-max-length 表示队列中容纳的最多消息个数 max-length-bytes | x-max-length-bytes 表示队列中的消息最大总字节数">
 
 
 
@@ -115,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/06/04/TTL和过期时间/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/05/队列的长度限制/">
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>TTL和过期时间 | Ice's Blog</title>
+  <title>队列的长度限制 | Ice's Blog</title>
   
 
 
@@ -374,7 +374,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/04/TTL和过期时间/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/05/队列的长度限制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice">
@@ -391,7 +391,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">TTL和过期时间
+          <h1 class="post-title" itemprop="name headline">队列的长度限制
 
               
             
@@ -417,12 +417,24 @@
                 
               
 
-              <time title="创建时间：2019-06-04 10:37:41 / 修改时间：15:40:24" itemprop="dateCreated datePublished" datetime="2019-06-04T10:37:41+08:00">2019-06-04</time>
+              <time title="创建时间：2019-06-05 17:42:12" itemprop="dateCreated datePublished" datetime="2019-06-05T17:42:12+08:00">2019-06-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-06 17:09:18" itemprop="dateModified" datetime="2019-06-06T17:09:18+08:00">2019-06-06</time>
               
             
           </span>
@@ -481,50 +493,86 @@
       
 
       
-        <h1 id="1-TTL介绍"><a href="#1-TTL介绍" class="headerlink" title="1 TTL介绍"></a>1 TTL介绍</h1><p>TTL全称Time-To-Live，即存活时间。在RabbitMQ中有两种TTL，分别是 <code>Message TTL</code> 和 <code>Queue TTL</code>。TTL可以通过参数设置，也可以通过 <code>policies</code> 策略设置 <code>message-ttl</code> 参数，推荐使用 <code>policies</code> 可以通过正则表达式为一个或者多个 <code>queue</code> 或者 <code>exchange</code> 定义TTL</p>
-<h1 id="2-Message-TTL-–-TTL类型消息"><a href="#2-Message-TTL-–-TTL类型消息" class="headerlink" title="2 Message TTL – TTL类型消息"></a>2 Message TTL – TTL类型消息</h1><p>如果一条消息在队列中的存放时间超过了设置的TTL超时时间 <em>（即在TTL设置的时间内没有消费者消费该消息）</em>，则该消息就会被认为已经”死了”，broker不会将”死了”的消息再推送给消费者，并且将会移除这些消息。消息超时时间必须是一个<strong>非负整数(&gt;=0)</strong>，单位是：<strong>毫秒</strong></p>
-<p>定义消息的TTL分为两种方式： <strong>在队列中定义</strong>以及<strong>在消息中定义</strong></p>
+        <h2 id="队列的长度限制"><a href="#队列的长度限制" class="headerlink" title="队列的长度限制"></a>队列的长度限制</h2><p>队列可以被设置大小，包括：队列中最大容纳的消息数目以及队列中容纳消息的最大总字节数。这两个值可以通过队列的 <code>x-args</code> 参数以及 <code>policy</code> 来设置。 如果两者同时使用，则其中设置的较小值有效</p>
+<ul>
+<li><code>max-length</code> | <code>x-max-length</code> 表示队列中容纳的最多消息<strong>个数</strong></li>
+<li><code>max-length-bytes</code> | <code>x-max-length-bytes</code> 表示队列中的消息最大<strong>总字节数</strong></li>
+</ul>
+<p>默认情况下，当设置了容量的队列中的<strong>未分发到消费者的消息</strong>，达到了设置的最大容量值后，队列会将处于队列前面的那些消息<em>(也就是比较旧的消息)</em> 依次移除或转发到”死信交换器” <em>(如果设置了对应的”死信”交换器)</em>。 如果需要改变这种溢出处理策略，则可以通过相应的队列参数进行修改。</p>
+<ul>
+<li><code>overflow</code> | <code>x-overflow</code> 定义队列溢出后数据处理策略</li>
+</ul>
+<p>该参数有两个值 <code>drop-head</code> 和 <code>reject-publish</code>，默认是 <code>drop-head</code>。 如果被设置为 <code>reject-publish</code> 则如果收到新消息，则会直接拒绝并丢弃。如果这时生产者使用了 <code>publish confirm</code> 模式，则生产者会收到 <code>nack</code> 通知。 当一个生产者对应有多个消费者，如果其中一个消费者对应的队列满了，并且设置了 <code>overflow=reject-publish</code>，则生产者会收到 <code>nack</code> 通知。 <strong>需要注意的是：如果设置了溢出策略为 <code>reject-publish</code> 则被丢弃的消息不会进入对应的 “死信交换器”</strong></p>
 <blockquote>
-<p>在队列中定义，设置的TTL值只对当前队列的消费者有效</p>
+<p><strong>生产者程序</strong>：生产者连续推送8条消息到broker</p>
 </blockquote>
-<p>通过 <code>channel.queueDeclare</code> 方法，其最后一个参数 <code>arguments</code> 中添加 <code>x-message-ttl</code> 字段，其值设置为具体的超时时间即可。例如，设置消息超时时间为3s，则部分代码如下：</p>
-<pre><code>Map&lt;String, Object&gt; arguments = new HashMap&lt;&gt;();
-arguments.put(&quot;x-message-ttl&quot;, 3000);
-channel.queueDeclare(queueName, true, false, false, arguments);
-</code></pre><p>使用 <code>policies</code> 设置时，会选择 <code>apply-to=queues</code>，因此也属于该种方式</p>
-<blockquote>
-<p>在消息中定义，设置的TTL值对该消息的所有的消费者都有效</p>
-</blockquote>
-<p>也可以通过生产者调用 <code>basic.publish</code> 方法，设置 <code>AMQP.BasicProperties</code> 参数的 <code>expiration</code> 属性。例如：</p>
-<pre><code>AMQP.BasicProperties basicProperties = new AMQP.BasicProperties()
-                .builder()
-                .expiration(&quot;3000&quot;)
-                .build();
-channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY, basicProperties, message.getBytes());
+<pre><code>...
+for (int i = 1; i &lt;= 8; i++) {
+    String message = &quot;NO.&quot; + i;
+    channel.basicPublish(BUSINESS_EXCHANGE_NAME, RK, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
+    System.out.println(String.format(&quot;发送消息:[%s]成功&quot;, message));
+}
+...
 </code></pre><blockquote>
-<p><strong>使用TTL时，你可能有些地方需要注意</strong></p>
+<p><strong>业务消费者程序</strong></p>
+</blockquote>
+<pre><code>...
+channel.basicQos(1);
+
+Map&lt;String, Object&gt; queueArgs = new HashMap&lt;&gt;(2);
+queueArgs.put(&quot;x-dead-letter-exchange&quot;, DEAD_LETTER_EXCHANGE_NAME);
+queueArgs.put(&quot;x-max-length&quot;, 2);
+channel.queueDeclare(QUEUE_NAME, false, false, true, queueArgs);
+channel.queueBind(QUEUE_NAME, BUSINESS_EXCHANGE_NAME, RK);
+
+// 消费消息
+channel.basicConsume(QUEUE_NAME, false, new DefaultConsumer(channel) {
+    @Override
+    public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+        String message = new String(body);
+        long deliveryTag = envelope.getDeliveryTag();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        channel.basicAck(deliveryTag, false);
+        System.out.println(String.format(&quot;消费消息:[%s]，手动确认ack&quot;, message));
+
+    }
+});
+...
+</code></pre><p>消费者设置 <code>prefetch</code> 为1，即<code>ack</code> 确认前该消费者不能再接收消息， 并且收到消息后会sleep 3s的时间，为了让队列中能够累积消息</p>
+<blockquote>
+<p><strong>运行结果</strong></p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>业务消费者 </p>
+</blockquote>
+</blockquote>
+<pre><code>消费消息:[NO.1]，手动确认ack
+消费消息:[NO.7]，手动确认ack
+消费消息:[NO.8]，手动确认ack
+</code></pre><blockquote>
+<blockquote>
+<p>“死信”消息消费者</p>
+</blockquote>
+</blockquote>
+<pre><code>收到死信消息：[NO.2]，手动回复ack
+收到死信消息：[NO.3]，手动回复ack
+收到死信消息：[NO.4]，手动回复ack
+收到死信消息：[NO.5]，手动回复ack
+收到死信消息：[NO.6]，手动回复ack
+</code></pre><p>从程序运行结果中可以看出，当消费者消费了第一条消息后，由于sleep 3s 的原因，这时队列中的消息产生了堆积。 由于设置了 <code>x-max-length</code> 为 <code>2</code>，因此队列中只存了两条最新的消息 <code>NO.7</code> 和 <code>NO.8</code>，且 <code>NO.2~NO.6</code> 都变成了 “死信” 消息， 转发到了 “死信” 交换器  <code>DEAD_LETTER_EXCHANGE_NAME</code></p>
+<blockquote>
+<p>需要关注的部分</p>
 </blockquote>
 <ul>
-<li>发送设置了TTL的消息到队列中时，如果此时队列中已经有了其他设置了TTL的消息，有可能会出现队列中已经过期的消息在未过期消息的后面。这种情况下该已过期的消息不会被移除，只有当其前面的消息过期或者被消费者消费掉，该过期消息到达队列头部时才会被丢弃<em>(或者放入”死信”队列)</em>。并且，该已过期的消息在未被移除之前，其占用的系统资源并不会释放，该消息仍然会被计入到一些统计数据中<em>(eg: 队列中总消息数目)</em>。</li>
-<li>设置TTL的消息会存在一种情况：已经被broker写入socket向消费者传送，但是在到达消费者之前，过期了（这种情况下，笔者也不知消息将会怎样？）</li>
-<li>当使用 <code>policy</code> 设置TTL时，建议有消费者实时在线消费消息，以确保过期的消息能够尽快的被丢弃</li>
-<li>考虑到上述行为，当需要删除消息释放资源的时候，设置了TTL的队列<strong>queue TTL</strong>应该考虑使用</li>
+<li>需要通过 <code>channel.basicQos()</code> 方法设置一个合适的 <code>prefetch</code> 限制每个消费者在 <code>ack</code> 之前可以最多收到的消息数目。 如果没有设置，那么broker总会将队列中的消息立刻转发到对应的客户端，此时 <code>x-max-length</code> 的设置也就没有了意义。</li>
+<li>如果更改了队列溢出策略 <code>overflow</code> 为 <code>reject-publish</code> 则超出限制的消息不会被 “死信”</li>
 </ul>
-<h1 id="3-Queue-TTL-–-TTL类型队列"><a href="#3-Queue-TTL-–-TTL类型队列" class="headerlink" title="3 Queue TTL – TTL类型队列"></a>3 Queue TTL – TTL类型队列</h1><p>TTL不仅能设置到队列中的消息上，还能设置到队列上。设置到队列上表示的意义是：<strong>在该队列自动删除之前还能存留的时间，单位是：毫秒，必须是正整数(&gt;0)</strong>, ，设置了TTL的队列，当没有消费者后，等待超时时间后就会被删除，跟队列的 <code>auto-delete</code> 属性无关。</p>
-<blockquote>
-<p>使用队列属性参数定义。</p>
-</blockquote>
-<p>如下，定义一个TTL为5s的队列：</p>
-<pre><code>Map&lt;String, Object&gt; arguments = new HashMap&lt;&gt;();
-arguments.put(&quot;x-expires&quot;, 5000); // 设置队列过期时间
-channel.queueDeclare(QUEUE_NAME, true, false, false, arguments);
-</code></pre><p>当该队列没有消费者后，等待<strong>5s</strong>就会被删除，即使 <code>autoDelte</code> 参数为false</p>
-<blockquote>
-<p>使用 <code>policy</code> 定义</p>
-</blockquote>
-<p>设置 <code>policy</code> 策略的 <code>expires</code> 参数，可以达到和 <code>x-expires</code> 一样的效果，更推荐使用 <code>policy</code> 定义。如：</p>
-<pre><code>rabbitmqctl set_policy expiry &quot;.*&quot; &apos;{&quot;expires&quot;:5000}&apos; --apply-to queues 
-</code></pre><p>语法格式：rabbitmqctl set_policy &lt;policy名称&gt; &lt;JSON格式参数&gt; –apply-to [queues|exchanges]。除了使用命令行，也可以在WEB UI上直接定义设置 <code>policy</code></p>
 
       
     </div>
@@ -561,8 +609,8 @@ channel.queueDeclare(QUEUE_NAME, true, false, false, arguments);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/03/Topic交换器/" rel="next" title="Topic交换器">
-                <i class="fa fa-chevron-left"></i> Topic交换器
+              <a href="/2019/06/05/【死信】交换器/" rel="next" title="【死信】交换器">
+                <i class="fa fa-chevron-left"></i> 【死信】交换器
               </a>
             
           </div>
@@ -571,8 +619,8 @@ channel.queueDeclare(QUEUE_NAME, true, false, false, arguments);
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/05/【死信】交换器/" rel="prev" title="【死信】交换器">
-                【死信】交换器 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/06/优先级队列/" rel="prev" title="优先级队列">
+                优先级队列 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -748,7 +796,7 @@ channel.queueDeclare(QUEUE_NAME, true, false, false, arguments);
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-TTL介绍"><span class="nav-number">1.</span> <span class="nav-text">1 TTL介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Message-TTL-–-TTL类型消息"><span class="nav-number">2.</span> <span class="nav-text">2 Message TTL – TTL类型消息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Queue-TTL-–-TTL类型队列"><span class="nav-number">3.</span> <span class="nav-text">3 Queue TTL – TTL类型队列</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#队列的长度限制"><span class="nav-number">1.</span> <span class="nav-text">队列的长度限制</span></a></li></ol></div>
             
 
           </div>
