@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="优先级队列从 3.5.0 版本开始，RabbitMQ提供了优先级队列的实现。如果要实现优先级队列需要两部操作即可：  通过队列参数定义具有优先级性质的队列  ... Map&amp;lt;String, Object&amp;gt; arguments = new HashMap&amp;lt;String, Object&amp;gt;(); arguments.put(&amp;quot;x-max-priority&amp;quot;,">
+  <meta name="description" content="优先级队列从 3.5.0 版本开始，RabbitMQ提供了优先级队列的实现。如果要实现优先级队列需要两部操作即可：  通过队列参数定义具有优先级性质的队列  Map&amp;lt;String, Object&amp;gt; arguments = new HashMap&amp;lt;String, Object&amp;gt;(); arguments.put(&amp;quot;x-max-priority&amp;quot;, 10);">
 <meta name="keywords" content="RabbitMQ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="优先级队列">
 <meta property="og:url" content="http://yoursite.com/2019/06/06/优先级队列/index.html">
 <meta property="og:site_name" content="Ice&#39;s Blog">
-<meta property="og:description" content="优先级队列从 3.5.0 版本开始，RabbitMQ提供了优先级队列的实现。如果要实现优先级队列需要两部操作即可：  通过队列参数定义具有优先级性质的队列  ... Map&amp;lt;String, Object&amp;gt; arguments = new HashMap&amp;lt;String, Object&amp;gt;(); arguments.put(&amp;quot;x-max-priority&amp;quot;,">
+<meta property="og:description" content="优先级队列从 3.5.0 版本开始，RabbitMQ提供了优先级队列的实现。如果要实现优先级队列需要两部操作即可：  通过队列参数定义具有优先级性质的队列  Map&amp;lt;String, Object&amp;gt; arguments = new HashMap&amp;lt;String, Object&amp;gt;(); arguments.put(&amp;quot;x-max-priority&amp;quot;, 10);">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-06T08:05:58.802Z">
+<meta property="og:updated_time" content="2019-06-10T08:03:25.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="优先级队列">
-<meta name="twitter:description" content="优先级队列从 3.5.0 版本开始，RabbitMQ提供了优先级队列的实现。如果要实现优先级队列需要两部操作即可：  通过队列参数定义具有优先级性质的队列  ... Map&amp;lt;String, Object&amp;gt; arguments = new HashMap&amp;lt;String, Object&amp;gt;(); arguments.put(&amp;quot;x-max-priority&amp;quot;,">
+<meta name="twitter:description" content="优先级队列从 3.5.0 版本开始，RabbitMQ提供了优先级队列的实现。如果要实现优先级队列需要两部操作即可：  通过队列参数定义具有优先级性质的队列  Map&amp;lt;String, Object&amp;gt; arguments = new HashMap&amp;lt;String, Object&amp;gt;(); arguments.put(&amp;quot;x-max-priority&amp;quot;, 10);">
 
 
 
@@ -246,7 +246,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">2</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">1</span></a>
 
   </li>
         
@@ -284,7 +284,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">13</span></a>
 
   </li>
 
@@ -417,12 +417,24 @@
                 
               
 
-              <time title="创建时间：2019-06-06 16:04:23 / 修改时间：16:05:58" itemprop="dateCreated datePublished" datetime="2019-06-06T16:04:23+08:00">2019-06-06</time>
+              <time title="创建时间：2019-06-06 15:55:01" itemprop="dateCreated datePublished" datetime="2019-06-06T15:55:01+08:00">2019-06-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-10 16:03:25" itemprop="dateModified" datetime="2019-06-10T16:03:25+08:00">2019-06-10</time>
               
             
           </span>
@@ -465,36 +477,6 @@
           
 
           
-            <div class="post-symbolscount">
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">1.4k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
 
           
 
@@ -515,17 +497,14 @@
 <blockquote>
 <p>通过队列参数定义具有优先级性质的队列</p>
 </blockquote>
-<pre><code>...
-Map&lt;String, Object&gt; arguments = new HashMap&lt;String, Object&gt;();
+<pre><code>Map&lt;String, Object&gt; arguments = new HashMap&lt;String, Object&gt;();
 arguments.put(&quot;x-max-priority&quot;, 10);
 channel.queueDeclare(queueName, true, false, true, arguments);
-...
 </code></pre><p>通过设置队列参数 <code>x-max-priority</code> 设置队列的优先级，队列的优先级支持 <strong>0~255</strong> 的数值，推荐使用的范围是： <strong>1~10</strong>。 该属性设置的是该队列中的消息允许的 <strong>最大优先级数值</strong>，不支持使用 <code>policy</code> 设置，因为 <code>policy</code> 是可以随时更新改变的。</p>
 <blockquote>
 <p>生产者推送消息的时候设置 <code>AMQP.BasicProperties</code> 的 <code>priority</code> 为该消息具体的优先级数值</p>
 </blockquote>
-<pre><code>...
-String[] messageAry = {&quot;hello&quot;, &quot;world&quot;, &quot;test&quot;};
+<pre><code>String[] messageAry = {&quot;hello&quot;, &quot;world&quot;, &quot;test&quot;};
 for (String message : messageAry) {
     AMQP.BasicProperties.Builder basicPropertiesBuilder = new AMQP.BasicProperties().builder();
     if (&quot;test&quot;.equalsIgnoreCase(message)) {
@@ -535,10 +514,9 @@ for (String message : messageAry) {
     channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY, basicPropertiesBuilder.build(), message.getBytes());
     System.out.println(String.format(&quot;send message[%s] over&quot;, message));
 }
-...
 </code></pre><p>该数值范围为 <strong>0~255</strong> 默认不设置的时候是 <strong>0</strong>。 如果超过对应的队列中 <code>x-max-priority</code> 设置的最大值，则会被强制设置为 <code>x-max-priority</code> 指定的最大值</p>
 <blockquote>
-<p>如果使用优先级队列，你可能需要关注这些</p>
+<p>使用优先级队列，你可能需要关注这些</p>
 </blockquote>
 <ul>
 <li>使用优先级队列，会存在内存、磁盘以及CPU的额外消耗，设置的优先级越高，消耗越大</li>
@@ -582,7 +560,7 @@ for (String message : messageAry) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/05/队列的长度限制/" rel="next" title="队列的长度限制">
+              <a href="/2019/06/06/队列的长度限制/" rel="next" title="队列的长度限制">
                 <i class="fa fa-chevron-left"></i> 队列的长度限制
               </a>
             
@@ -665,7 +643,7 @@ for (String message : messageAry) {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -703,9 +681,7 @@ for (String message : messageAry) {
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">1</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -804,21 +780,7 @@ for (String message : messageAry) {
   <span class="author" itemprop="copyrightHolder">Ice</span>
 
   
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    
-    <span title="站点总字数">22k</span>
-  
 
-  
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    
-    <span title="站点阅读时长">20 分钟</span>
   
 </div>
 
