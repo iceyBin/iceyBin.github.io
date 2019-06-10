@@ -97,14 +97,14 @@
 
 
   <meta name="description" content="概述  有时我们可能会希望有客户端处理不能被路由的消息 (对应的RK没有消费者或者broker找不到对应的RK)，作用大致有：  监控客户端刻意或者偶尔发送的无法路由的消息，便于后续处理 特殊消息需要特殊处理  “备用”交换器 Alternate Exhcange，简称AE，就是用于处理这种情况下的一种交换器 AE跟之前我们学过的普通的交换器一样，唯一的区别或许就是：普通交换器接收的消息是客户端">
-<meta name="keywords" content="RabbitMq">
+<meta name="keywords" content="RabbitMQ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【备用】交换器">
 <meta property="og:url" content="http://yoursite.com/2019/06/06/【备用】交换器/index.html">
 <meta property="og:site_name" content="Ice&#39;s Blog">
 <meta property="og:description" content="概述  有时我们可能会希望有客户端处理不能被路由的消息 (对应的RK没有消费者或者broker找不到对应的RK)，作用大致有：  监控客户端刻意或者偶尔发送的无法路由的消息，便于后续处理 特殊消息需要特殊处理  “备用”交换器 Alternate Exhcange，简称AE，就是用于处理这种情况下的一种交换器 AE跟之前我们学过的普通的交换器一样，唯一的区别或许就是：普通交换器接收的消息是客户端">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-07T03:16:59.267Z">
+<meta property="og:updated_time" content="2019-06-10T08:28:38.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【备用】交换器">
 <meta name="twitter:description" content="概述  有时我们可能会希望有客户端处理不能被路由的消息 (对应的RK没有消费者或者broker找不到对应的RK)，作用大致有：  监控客户端刻意或者偶尔发送的无法路由的消息，便于后续处理 特殊消息需要特殊处理  “备用”交换器 Alternate Exhcange，简称AE，就是用于处理这种情况下的一种交换器 AE跟之前我们学过的普通的交换器一样，唯一的区别或许就是：普通交换器接收的消息是客户端">
@@ -246,7 +246,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">2</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">1</span></a>
 
   </li>
         
@@ -284,7 +284,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">13</span></a>
 
   </li>
 
@@ -417,7 +417,7 @@
                 
               
 
-              <time title="创建时间：2019-06-06 17:53:55" itemprop="dateCreated datePublished" datetime="2019-06-06T17:53:55+08:00">2019-06-06</time>
+              <time title="创建时间：2019-06-06 15:55:51" itemprop="dateCreated datePublished" datetime="2019-06-06T15:55:51+08:00">2019-06-06</time>
             
 
             
@@ -434,7 +434,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-07 11:16:59" itemprop="dateModified" datetime="2019-06-07T11:16:59+08:00">2019-06-07</time>
+                <time title="修改时间：2019-06-10 16:28:38" itemprop="dateModified" datetime="2019-06-10T16:28:38+08:00">2019-06-10</time>
               
             
           </span>
@@ -477,36 +477,6 @@
           
 
           
-            <div class="post-symbolscount">
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">2.4k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">2 分钟</span>
-              
-            </div>
-          
 
           
 
@@ -546,17 +516,14 @@ channel.exchangeDeclare(BUSINESS_EXCHANGE_NAME, BuiltinExchangeType.DIRECT, fals
 ...
 </code></pre></li>
 <li><p>使用 <code>policies</code></p>
-<pre><code>rabbitmqctl set_policy AE &quot;^my-direct$&quot; &apos;{&quot;alternate-exchange&quot;:&quot;my-ae&quot;}&apos;
+<pre><code>rabbitmqctl set_policy AE &quot;^my-direct$&quot; &apos;{&quot;alternate-exchange&quot;:&quot;my-ae&quot;}&apos; 
 </code></pre></li>
 </ul>
 <blockquote>
 <p>具体示例代码</p>
 </blockquote>
-<blockquote>
-<blockquote>
-<p>生产者程序</p>
-</blockquote>
-</blockquote>
+<ul>
+<li><p>生产者程序</p>
 <pre><code>...
 try (Connection connection = MQUtil.getConnection(); Channel channel = connection.createChannel()) {
    for (int i = 1; i &lt;= 8; i++) {
@@ -566,11 +533,8 @@ try (Connection connection = MQUtil.getConnection(); Channel channel = connectio
    }
 }
 ...
-</code></pre><blockquote>
-<blockquote>
-<p>运行结果</p>
-</blockquote>
-</blockquote>
+</code></pre></li>
+<li><p>运行结果</p>
 <pre><code>发送消息:[NO.1]成功
 发送消息:[NO.2]成功
 发送消息:[NO.3]成功
@@ -579,17 +543,15 @@ try (Connection connection = MQUtil.getConnection(); Channel channel = connectio
 发送消息:[NO.6]成功
 发送消息:[NO.7]成功
 发送消息:[NO.8]成功
-</code></pre><blockquote>
-<blockquote>
-<p>业务消费者</p>
-</blockquote>
-</blockquote>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>业务消费者</p>
 <pre><code>channel.queueBind(QUEUE_NAME, BUSINESS_EXCHANGE_NAME, RK);
-</code></pre><blockquote>
-<blockquote>
-<p>AE消费者</p>
-</blockquote>
-</blockquote>
+</code></pre></li>
+</ul>
+<ul>
+<li><p>AE消费者    </p>
 <pre><code>...
 channel.exchangeDeclare(ALTERNATE_EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
 
@@ -611,11 +573,8 @@ channel.basicConsume(queueName, new DefaultConsumer(channel) {
     }
 });
 ...
-</code></pre><blockquote>
-<blockquote>
-<p>运行结果</p>
-</blockquote>
-</blockquote>
+</code></pre></li>
+<li><p>运行结果</p>
 <pre><code>准备接收alternative消息...
 收到消息：[NO.1]
 收到消息：[NO.2]
@@ -625,7 +584,9 @@ channel.basicConsume(queueName, new DefaultConsumer(channel) {
 收到消息：[NO.6]
 收到消息：[NO.7]
 收到消息：[NO.8]
-</code></pre><p>程序中定义了一个AE名称为 <code>ALTERNATE_EXCHANGE_NAME</code>，类型为 <code>fanout</code>。业务消费者使用的是 <code>RK</code>，生产者使用的 <code>RK2</code> 因此无法路由到任何的队列中，这时消息就会推送到AE，进而进入到对应的AE绑定的队列中，最后被消费</p>
+</code></pre></li>
+</ul>
+<p>程序中定义了一个AE名称为 <code>ALTERNATE_EXCHANGE_NAME</code>，类型为 <code>fanout</code>。业务消费者使用的是 <code>RK</code>，生产者使用的 <code>RK2</code> 因此无法路由到任何的队列中，这时消息就会推送到AE，进而进入到对应的AE绑定的队列中，最后被消费</p>
 
       
     </div>
@@ -649,7 +610,7 @@ channel.basicConsume(queueName, new DefaultConsumer(channel) {
       
         <div class="post-tags">
           
-            <a href="/tags/RabbitMq/" rel="tag"># RabbitMq</a>
+            <a href="/tags/RabbitMQ/" rel="tag"># RabbitMQ</a>
           
         </div>
       
@@ -671,6 +632,10 @@ channel.basicConsume(queueName, new DefaultConsumer(channel) {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/10/Virtual-Hosts/" rel="prev" title="Virtual Hosts">
+                Virtual Hosts <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -732,7 +697,7 @@ channel.basicConsume(queueName, new DefaultConsumer(channel) {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -770,9 +735,7 @@ channel.basicConsume(queueName, new DefaultConsumer(channel) {
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">1</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -854,21 +817,7 @@ channel.basicConsume(queueName, new DefaultConsumer(channel) {
   <span class="author" itemprop="copyrightHolder">Ice</span>
 
   
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    
-    <span title="站点总字数">22k</span>
-  
 
-  
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    
-    <span title="站点阅读时长">20 分钟</span>
   
 </div>
 

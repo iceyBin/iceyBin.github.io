@@ -96,18 +96,20 @@
 
 
 
-  <meta name="description" content="Direct交换器-基础使用1 建立连接，获取信道MQUtil.java // 建立到代理服务器的连接 public static Connection getConnection(String vhost) throws Exception {     ConnectionFactory connectionFactory = new ConnectionFactory();     facto">
+  <meta name="description" content="前言RabbitMQ中的队列和交换器，除了一些必须属性 (eg：durable、exclusive等) 外，还有一些可选的参数。 这些参数的形式都是 x-argument，可以在队列或者交换器定义的时候通过Map类型的参数指定，这些参数可以赋予队列或者交换器一些其他的特征 通过定义队列或交换器的时候指定具体的参数，这可能在某些情况下是个不错的选择。 但是，这种控制方式有一些缺点：  不能灵活的对参">
 <meta name="keywords" content="RabbitMQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Direct类型交换器-基础使用">
-<meta property="og:url" content="http://yoursite.com/2019/05/26/Direct类型交换器-基础使用/index.html">
+<meta property="og:title" content="参数和Policies">
+<meta property="og:url" content="http://yoursite.com/2019/06/10/参数和Policies/index.html">
 <meta property="og:site_name" content="Ice&#39;s Blog">
-<meta property="og:description" content="Direct交换器-基础使用1 建立连接，获取信道MQUtil.java // 建立到代理服务器的连接 public static Connection getConnection(String vhost) throws Exception {     ConnectionFactory connectionFactory = new ConnectionFactory();     facto">
+<meta property="og:description" content="前言RabbitMQ中的队列和交换器，除了一些必须属性 (eg：durable、exclusive等) 外，还有一些可选的参数。 这些参数的形式都是 x-argument，可以在队列或者交换器定义的时候通过Map类型的参数指定，这些参数可以赋予队列或者交换器一些其他的特征 通过定义队列或交换器的时候指定具体的参数，这可能在某些情况下是个不错的选择。 但是，这种控制方式有一些缺点：  不能灵活的对参">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-04T02:34:28.013Z">
+<meta property="og:image" content="http://yoursite.com/2019/06/10/参数和Policies/themes/next/source/images/loading.gif">
+<meta property="og:updated_time" content="2019-06-10T13:50:22.596Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Direct类型交换器-基础使用">
-<meta name="twitter:description" content="Direct交换器-基础使用1 建立连接，获取信道MQUtil.java // 建立到代理服务器的连接 public static Connection getConnection(String vhost) throws Exception {     ConnectionFactory connectionFactory = new ConnectionFactory();     facto">
+<meta name="twitter:title" content="参数和Policies">
+<meta name="twitter:description" content="前言RabbitMQ中的队列和交换器，除了一些必须属性 (eg：durable、exclusive等) 外，还有一些可选的参数。 这些参数的形式都是 x-argument，可以在队列或者交换器定义的时候通过Map类型的参数指定，这些参数可以赋予队列或者交换器一些其他的特征 通过定义队列或交换器的时候指定具体的参数，这可能在某些情况下是个不错的选择。 但是，这种控制方式有一些缺点：  不能灵活的对参">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/10/参数和Policies/themes/next/source/images/loading.gif">
 
 
 
@@ -115,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/05/26/Direct类型交换器-基础使用/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/10/参数和Policies/">
 
 
 
@@ -125,7 +127,7 @@
   };
 </script>
 
-  <title>Direct类型交换器-基础使用 | Ice's Blog</title>
+  <title>参数和Policies | Ice's Blog</title>
   
 
 
@@ -374,7 +376,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/Direct类型交换器-基础使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/10/参数和Policies/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice">
@@ -391,7 +393,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Direct类型交换器-基础使用
+          <h1 class="post-title" itemprop="name headline">参数和Policies
 
               
             
@@ -417,24 +419,12 @@
                 
               
 
-              <time title="创建时间：2019-05-26 16:13:49" itemprop="dateCreated datePublished" datetime="2019-05-26T16:13:49+08:00">2019-05-26</time>
+              <time title="创建时间：2019-06-10 15:38:49 / 修改时间：21:50:22" itemprop="dateCreated datePublished" datetime="2019-06-10T15:38:49+08:00">2019-06-10</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-04 10:34:28" itemprop="dateModified" datetime="2019-06-04T10:34:28+08:00">2019-06-04</time>
               
             
           </span>
@@ -493,76 +483,29 @@
       
 
       
-        <h1 id="Direct交换器-基础使用"><a href="#Direct交换器-基础使用" class="headerlink" title="Direct交换器-基础使用"></a>Direct交换器-基础使用</h1><h2 id="1-建立连接，获取信道"><a href="#1-建立连接，获取信道" class="headerlink" title="1 建立连接，获取信道"></a>1 建立连接，获取信道</h2><p><strong>MQUtil.java</strong></p>
-<pre><code>// 建立到代理服务器的连接
-public static Connection getConnection(String vhost) throws Exception {
-    ConnectionFactory connectionFactory = new ConnectionFactory();
-    factory.setHost(&quot;localhost&quot;);
-    factory.setUsername(&quot;admin&quot;);
-    factory.setPassword(&quot;admin&quot;);
-    if (!StringUtils.isEmpty(vhost)) {
-        connectionFactory.setVirtualHost(vhost);
-    }
-    return connectionFactory.newConnection();
-}
-</code></pre><p>后续的动作都是用channel来完成，使用try-resource包装，使得connection和channel可以自动关闭</p>
-<pre><code>try (Connection connection = MQUtil.getConnection(); Channel channel = connection.createChannel()) {...}
-</code></pre><h2 id="2-生产者推送消息"><a href="#2-生产者推送消息" class="headerlink" title="2 生产者推送消息"></a>2 生产者推送消息</h2><p>生产者推送消息到MQ只需要<strong>RoutingKey</strong>和<strong>Exchange</strong>即可：</p>
-<pre><code>// 定义交换器. durable标识是否持久化
-channel.exchangeDeclare(exchange, BuiltinExchangeType.DIRECT, durable);
-
-// 推送消息
-channel.basicPublish(exchange, routingKey, props, body);
-</code></pre><p>方法参数意义：</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>RabbitMQ中的队列和交换器，除了一些必须属性 <em>(eg：durable、exclusive等)</em> 外，还有一些可选的参数。 这些参数的形式都是 <code>x-argument</code>，可以在队列或者交换器定义的时候通过Map类型的参数指定，这些参数可以赋予队列或者交换器一些其他的特征</p>
+<p>通过定义队列或交换器的时候指定具体的参数，这可能在某些情况下是个不错的选择。 但是，这种控制方式有一些缺点：</p>
 <ul>
-<li>exchange: 使用的交换器名称，如果使用默认的交换器，此处使用空字符串 <code>&quot;&quot;</code></li>
-<li>routingKey: 消息指定的RoutingKey，MQ会通过该RoutingKey将消息分发到通过该值绑定的队列中</li>
-<li>props: 该参数的类型是 <code>BasicProperties</code> 主要用来设置消息的一些信息，如contentType、headers等。 <code>MessageProperties</code> 是获取 <code>BasicProperties</code> 对象的一个工具类，只要用来获取不同类型的信息</li>
-<li>body: 消息本身内容，类型是 <code>byte[]</code></li>
+<li>不能灵活的对参数进行增删改查操作</li>
+<li>一次只能为一个队列或者交换器指定参数，不能一次性为多个队列或交换器设置参数</li>
 </ul>
-<h2 id="3-消费者消费消息"><a href="#3-消费者消费消息" class="headerlink" title="3 消费者消费消息"></a>3 消费者消费消息</h2><h3 id="3-1-定义交换器和队列"><a href="#3-1-定义交换器和队列" class="headerlink" title="3.1 定义交换器和队列"></a>3.1 定义交换器和队列</h3><p>消费消息时不需要将 <code>Connection</code> 和 <code>Channel</code> 进行 <code>try-resource</code> 封装，因为消费者需要循环的监控接收消息，因此不能关闭信道和连接</p>
-<pre><code>// 定义交换器    
-channel.exchangeDeclare(exchange, type, durable);
-
-// 定义队列
-channel.queueDeclare(quueName, true, false, false, null);
-
-// 将队列通过RoutingKey绑定到交换器上
-channel.queueBind(queue, exchange, routingKey);
-</code></pre><p>这里主要看下 <code>queueDeclare</code> 方法，该方法的定义如下：</p>
-<pre><code>Queue.DeclareOk queueDeclare(String queue, boolean durable, boolean exclusive, boolean autoDelete,Map&lt;String, Object&gt; arguments) throws IOException;
-</code></pre><ul>
-<li>queue: 队列名称</li>
-<li>durable: 是否持久化</li>
-<li>exclusive: 是否排他，如果设置为true，则表示只能用于创建其的连接中，不能用于另外的连接<em>(例如：如果有两个客户端同时都是新创建连接，然后定义相同的一个 <code>exclusive</code> 属性为<strong>true</strong>的队列，则只有其中的一个能成功启动，另外一个启动会报错)</em>。 并且，当连接关闭或者断开的时候，该队列会被自动删除 <em>(即使定义的队列是持久化的)</em></li>
-<li>autoDelete: 是否自动删除。 如果设置为<strong>true</strong>，则当没有消费者使用这个队列的时候，这个队列会被自动删除</li>
-</ul>
-<h3 id="3-2-消费消息"><a href="#3-2-消费消息" class="headerlink" title="3.2 消费消息"></a>3.2 消费消息</h3><pre><code>// 消费者成功接收到消息，消费回调函数
-DeliverCallback deliverCallback = (consumerTag, message) -&gt; {
-    String receiveMsg = new String(message.getBody());
-    // 手动确认消息的接收
-    channel.basicAck(message.getEnvelope().getDeliveryTag(), false);
-};
-
-// 消费消息
-channel.basicConsume(QUEUE_NAME, deliverCallback, (consumerTag) -&gt; {
-    System.err.println(String.format(&quot;系统异常，消费者[%s]不能正常消费消息&quot;, consumerTag));
-});
-</code></pre><p>需要注意的是 <code>basicAck</code> 方法的第二个参数，这个参数标识是否要批量确认。如果设置为 <code>true</code> 则会批量确认所有该channel中已经到达MQ服务器的消息；如果设置为 <code>false</code>，则只确认指定的deliverTag对应的消息。</p>
-<p>再来看下消费消息的函数 <code>basicConsume</code> 定义如下：</p>
-<pre><code>String basicConsume(String queue, DeliverCallback deliverCallback, CancelCallback cancelCallback) throws IOException; 
-</code></pre><p><strong>该方法是一个无限循环阻塞方法，会循环获取绑定的队列中的消息</strong></p>
+<p>在这种情况下，RabbitMQ引入了 <code>Policies</code></p>
+<h2 id="介绍-Policies"><a href="#介绍-Policies" class="headerlink" title="介绍 Policies"></a>介绍 Policies</h2><p><code>Policies</code> 的主要的属性：</p>
 <ul>
-<li>queue：队列名称。 指定消费者从哪个队列中消费消息</li>
-<li>deliverCallback: 消费者成功接收MQ推送的消息的回调函数，主要在该函数中进行消息的处理以及手动ack。该函数有个重载，多了一个 <code>autoAck</code> 参数，标识是否自动确认消息的接收。如果设置为 <strong>true</strong> 则当消费者正常接收到消息就会向MQ自动确认，MQ就会将该消息从消息队列中删除<em>(即使消息后续没有被成功消费)</em>， 默认false，一般情况下都会使用默认false。 如果设置为 <code>false</code> 就需要在 <code>deliverCallback</code> 回调函数中进行手动确认。</li>
-<li>cancelCallback: 当MQ服务出现问题，导致不能正常消费消息 <em>(比如：队列被删除等)</em>，则会调用该回调函数。此外，消费者也可以调用 <code>channel.basicAck</code> 手动取消该消费者 </li>
+<li>name：名称，可以是除基于ASCII的名称以外的任何名称，不建议使用空格</li>
+<li>pattern：正则表达式，匹配队列或者交换器</li>
+<li>definition：定义一系列的键值对，也就是参数，会注入到对应的队列和交换器中</li>
+<li>priority：优先级</li>
 </ul>
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h1><ol>
-<li>生产者推送消息只需要 <strong>RoutingKey</strong> 和 <strong>Exchange</strong></li>
-<li>消费者建议手动 <code>ack</code> 确认，尽量保证消息不丢失</li>
-<li>笔者建议生产者和消费者双方都需要进行创建队列的工作，因为不确定哪一方先启动</li>
-<li>如果想要消息的持久化，必须保证交换器持久化、队列持久化</li>
-</ol>
+<p><code>Policies</code> 会自动的通过其 <code>pattern</code> 属性匹配到对应的队列或交换器，并且将其 <code>definition</code> 属性定义的参数注入到匹配到的队列或交换器中。 <code>Policies</code> 可以仅仅匹配队列、也可以仅仅匹配交换器，甚至可以两者同时匹配，这要取决于其 <code>apply-to</code> 指定的类型(<code>queues</code>、<code>exchanges</code>、<code>all</code>) ，默认的值是<code>all</code>。 每个队列或者交换器最多只能匹配有一个 <code>Policies</code>。 当更新 <code>Policies</code> 中相关的参数时，相关的队列或者交换器也会立即更新，对于比较繁忙的队列可能需要花费一点事时间。 当队列或者交换器每次创建的时候都会进行 <code>Policies</code> 的匹配和使用，不只是当 <code>Policies</code> 创建的时候</p>
+<h2 id="创建Policies"><a href="#创建Policies" class="headerlink" title="创建Policies"></a>创建Policies</h2><ul>
+<li><p>使用 <code>rabbitmqctl</code> 创建 Policies</p>
+<pre><code>rabbitmqctl set_policy policies_name &quot;^amq\.&quot; &apos;{&quot;federation-upstream-set&quot;:&quot;all&quot;}&apos; --priority 1 --apply-to exchanges
+</code></pre></li>
+<li><p>使用 <strong>WEB UI</strong> 创建 Policies</p>
+</li>
+</ul>
+<p><img src="./themes/next/source/images/loading.gif" data-original="/../img/201905/create_policies.png" alt="create_policies"></p>
 
       
     </div>
@@ -599,8 +542,8 @@ channel.basicConsume(QUEUE_NAME, deliverCallback, (consumerTag) -&gt; {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/26/初识RabbitMQ/" rel="next" title="初识RabbitMQ">
-                <i class="fa fa-chevron-left"></i> 初识RabbitMQ
+              <a href="/2019/06/10/Virtual-Hosts/" rel="next" title="Virtual Hosts">
+                <i class="fa fa-chevron-left"></i> Virtual Hosts
               </a>
             
           </div>
@@ -608,10 +551,6 @@ channel.basicConsume(QUEUE_NAME, deliverCallback, (consumerTag) -&gt; {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/26/Direct类型交换器-生产者confirm模式/" rel="prev" title="Direct类型交换器-生产者confirm模式">
-                Direct类型交换器-生产者confirm模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -784,7 +723,7 @@ channel.basicConsume(QUEUE_NAME, deliverCallback, (consumerTag) -&gt; {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Direct交换器-基础使用"><span class="nav-number">1.</span> <span class="nav-text">Direct交换器-基础使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-建立连接，获取信道"><span class="nav-number">1.1.</span> <span class="nav-text">1 建立连接，获取信道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-生产者推送消息"><span class="nav-number">1.2.</span> <span class="nav-text">2 生产者推送消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-消费者消费消息"><span class="nav-number">1.3.</span> <span class="nav-text">3 消费者消费消息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-定义交换器和队列"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 定义交换器和队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-消费消息"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 消费消息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-总结"><span class="nav-number">2.</span> <span class="nav-text">4 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍-Policies"><span class="nav-number">2.</span> <span class="nav-text">介绍 Policies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Policies"><span class="nav-number">3.</span> <span class="nav-text">创建Policies</span></a></li></ol></div>
             
 
           </div>
