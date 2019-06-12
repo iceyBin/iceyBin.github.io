@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Ice&#39;s Blog">
 <meta property="og:description" content="队列懒加载RabbitMQ从3.6.0 版本开始，RabbitMQ引入了懒加载队列的概念  RAM内存警报   默认情况下，RabbitMQ会时实时监控该服务使用内存的情况，当使用的内存超过服务所在计算机的总RAM内存的40%时，就会触发内存警报，此时RabbitMQ就会阻塞所有正在推送消息的连接直到内存警报解除。 出现内存警报时， RabbitMQ会将消息尽量的移出到硬盘上来解决RAM内存占用过">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-10T08:19:13.085Z">
+<meta property="og:updated_time" content="2019-06-12T07:22:08.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="队列懒加载">
 <meta name="twitter:description" content="队列懒加载RabbitMQ从3.6.0 版本开始，RabbitMQ引入了懒加载队列的概念  RAM内存警报   默认情况下，RabbitMQ会时实时监控该服务使用内存的情况，当使用的内存超过服务所在计算机的总RAM内存的40%时，就会触发内存警报，此时RabbitMQ就会阻塞所有正在推送消息的连接直到内存警报解除。 出现内存警报时， RabbitMQ会将消息尽量的移出到硬盘上来解决RAM内存占用过">
@@ -434,7 +434,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-10 16:19:13" itemprop="dateModified" datetime="2019-06-10T16:19:13+08:00">2019-06-10</time>
+                <time title="修改时间：2019-06-12 15:22:08" itemprop="dateModified" datetime="2019-06-12T15:22:08+08:00">2019-06-12</time>
               
             
           </span>
@@ -540,13 +540,11 @@ channel.queueDeclare(&quot;myqueue&quot;, false, false, false, args);
 </blockquote>
 <ol>
 <li>当将节点内存使用率保持在较低的优先级，并且可以接受较高的磁盘I/O和磁盘使用率时，可以考虑使用延迟队列</li>
-</ol>
-<ul>
 <li>当一个RabbitMQ节点正在运行并且正常操作的情况下，延迟队列会保证除了正在传送中的信息，其他的信息都会存放在磁盘上</li>
 <li>如果一个RabbitMQ节点所在的主机不能充分提供需要的内存和磁盘空间，那么该节点是无法正常启动的</li>
 <li>如果一个RabbitMQ节点受内存限制，或者在该主机上又很多的延迟队列，那么这将会规划容量很重要的考虑因素</li>
 <li>当一个RabbitMQ节点启动时，所有的队列(包括延迟队列)将会最多将队列中 16384 条消息加载到内存中</li>
-</ul>
+</ol>
 
       
     </div>
