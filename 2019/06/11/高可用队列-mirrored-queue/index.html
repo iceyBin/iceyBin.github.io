@@ -96,21 +96,20 @@
 
 
 
-  <meta name="description" content="Direct类型交换器-生产者confirm模式上篇文章简单入门了Direct交换器，如有需要请查看 Direct类型交换器-基础使用 1 prefetch属性的设置问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能者多劳呢？ 答案是：均匀分发消费。如果一个消费者有多个实例，那么到达这个消费者的消息会被broker">
+  <meta name="description" content="1 queue mirror 介绍默认情况下，在RabbitMQ集群中，每个队列只会将其内容存储一个节点(定义队列的节点)上，队列可以被设置为mirrored queue实现跨多个节点。 每个mirrored queue都是由一个 master 节点和一到多个 mirror 节点， 每个 mirrored queue 都有自己的 master 节点，该队列的所有的操作都是在 master 节点上完">
 <meta name="keywords" content="RabbitMQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Direct类型交换器-生产者confirm模式">
-<meta property="og:url" content="http://yoursite.com/2019/05/26/Direct类型交换器-生产者confirm模式/index.html">
+<meta property="og:title" content="高可用队列 - mirrored queue">
+<meta property="og:url" content="http://yoursite.com/2019/06/11/高可用队列-mirrored-queue/index.html">
 <meta property="og:site_name" content="Ice&#39;s Blog">
-<meta property="og:description" content="Direct类型交换器-生产者confirm模式上篇文章简单入门了Direct交换器，如有需要请查看 Direct类型交换器-基础使用 1 prefetch属性的设置问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能者多劳呢？ 答案是：均匀分发消费。如果一个消费者有多个实例，那么到达这个消费者的消息会被broker">
+<meta property="og:description" content="1 queue mirror 介绍默认情况下，在RabbitMQ集群中，每个队列只会将其内容存储一个节点(定义队列的节点)上，队列可以被设置为mirrored queue实现跨多个节点。 每个mirrored queue都是由一个 master 节点和一到多个 mirror 节点， 每个 mirrored queue 都有自己的 master 节点，该队列的所有的操作都是在 master 节点上完">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/05/26/Direct类型交换器-生产者confirm模式/themes/next/source/images/loading.gif">
-<meta property="og:image" content="http://yoursite.com/2019/05/26/Direct类型交换器-生产者confirm模式/themes/next/source/images/loading.gif">
-<meta property="og:updated_time" content="2019-06-04T02:34:40.845Z">
+<meta property="og:image" content="http://yoursite.com/2019/06/11/高可用队列-mirrored-queue/themes/next/source/images/loading.gif">
+<meta property="og:updated_time" content="2019-06-11T11:29:37.410Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Direct类型交换器-生产者confirm模式">
-<meta name="twitter:description" content="Direct类型交换器-生产者confirm模式上篇文章简单入门了Direct交换器，如有需要请查看 Direct类型交换器-基础使用 1 prefetch属性的设置问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能者多劳呢？ 答案是：均匀分发消费。如果一个消费者有多个实例，那么到达这个消费者的消息会被broker">
-<meta name="twitter:image" content="http://yoursite.com/2019/05/26/Direct类型交换器-生产者confirm模式/themes/next/source/images/loading.gif">
+<meta name="twitter:title" content="高可用队列 - mirrored queue">
+<meta name="twitter:description" content="1 queue mirror 介绍默认情况下，在RabbitMQ集群中，每个队列只会将其内容存储一个节点(定义队列的节点)上，队列可以被设置为mirrored queue实现跨多个节点。 每个mirrored queue都是由一个 master 节点和一到多个 mirror 节点， 每个 mirrored queue 都有自己的 master 节点，该队列的所有的操作都是在 master 节点上完">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/11/高可用队列-mirrored-queue/themes/next/source/images/loading.gif">
 
 
 
@@ -118,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/05/26/Direct类型交换器-生产者confirm模式/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/11/高可用队列-mirrored-queue/">
 
 
 
@@ -128,7 +127,7 @@
   };
 </script>
 
-  <title>Direct类型交换器-生产者confirm模式 | Ice's Blog</title>
+  <title>高可用队列 - mirrored queue | Ice's Blog</title>
   
 
 
@@ -377,7 +376,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/Direct类型交换器-生产者confirm模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/11/高可用队列-mirrored-queue/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ice">
@@ -394,7 +393,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Direct类型交换器-生产者confirm模式
+          <h1 class="post-title" itemprop="name headline">高可用队列 - mirrored queue
 
               
             
@@ -420,24 +419,12 @@
                 
               
 
-              <time title="创建时间：2019-05-26 17:29:29" itemprop="dateCreated datePublished" datetime="2019-05-26T17:29:29+08:00">2019-05-26</time>
+              <time title="创建时间：2019-06-11 11:38:26 / 修改时间：19:29:37" itemprop="dateCreated datePublished" datetime="2019-06-11T11:38:26+08:00">2019-06-11</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-04 10:34:40" itemprop="dateModified" datetime="2019-06-04T10:34:40+08:00">2019-06-04</time>
               
             
           </span>
@@ -496,51 +483,64 @@
       
 
       
-        <h1 id="Direct类型交换器-生产者confirm模式"><a href="#Direct类型交换器-生产者confirm模式" class="headerlink" title="Direct类型交换器-生产者confirm模式"></a>Direct类型交换器-生产者confirm模式</h1><p>上篇文章简单入门了Direct交换器，如有需要请查看 <a href="https://iceybin.github.io/2019/05/26/2-Direct%E7%B1%BB%E5%9E%8B%E4%BA%A4%E6%8D%A2%E5%99%A8-%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/#more" target="_blank" rel="noopener">Direct类型交换器-基础使用</a></p>
-<h2 id="1-prefetch属性的设置"><a href="#1-prefetch属性的设置" class="headerlink" title="1 prefetch属性的设置"></a>1 prefetch属性的设置</h2><p>问题：分布式环境中，每个消费者会有多个实例同时存在，这时对应的生产者推送的消息，该消费者如何消费呢？是均匀的分发，还是根据消费能力，能者多劳呢？</p>
-<p>答案是：<strong>均匀分发消费</strong>。如果一个消费者有多个实例，那么到达这个消费者的消息会被broker进行均匀的分发消费，这是broker默认的机制。当然，实际应用中，会有很多的条件导致该消费者的多个实例的消费能力不同 <em>(比如机器配置不同、网络带宽影响等等)</em>，这时我们理想的情况是”能者多劳”。这时，我们只需要调用 <code>basicQos</code> 方法这时 <code>prefetch = 1</code> 即可 ，即可达到理想效果 <em>(这也是springBoot集成rabbitMQ的默认配置)</em>。这样设置的情况下，如果某个消费者实例消费能力比较弱，在收到 <code>ack</code> 确认之前，broker不会再分发消息到该实例</p>
-<pre><code>int prefetchCount = 1;
-channel.basicQos(prefetchCount);
-</code></pre><h2 id="2-生产者confirm模式"><a href="#2-生产者confirm模式" class="headerlink" title="2 生产者confirm模式"></a>2 生产者confirm模式</h2><p>上篇文章说到，消费者可以采用手动 <code>ack</code> 确认的模式尽量的防止消息的丢失。但是，这样真的就达到目的了吗？当然不是，试想，如果生产者的消息根本就没有到达broker呢？要解决这个问题，就需要用到<strong>生产者confirm模式</strong></p>
-<h3 id="2-1-设置channel为confirm模式"><a href="#2-1-设置channel为confirm模式" class="headerlink" title="2.1 设置channel为confirm模式"></a>2.1 设置channel为confirm模式</h3><pre><code>// 将信道设置为confirm模式
-channel.confirmSelect();
-</code></pre><p>broker如果接收到消息会进行回调，生产者有两种方式可以进行消息发送成功以及失败的后续处理，分别是<strong>手动逐条确认</strong>和<strong>异步监听确认</strong></p>
-<h3 id="2-2-手动逐条确认"><a href="#2-2-手动逐条确认" class="headerlink" title="2.2 手动逐条确认"></a>2.2 手动逐条确认</h3><p>每次发送消息后进行确认</p>
-<pre><code>if (channel.waitForConfirms()) {
-    System.out.println(String.format(&quot;推送消息[%s]成功&quot;, message));
-} else {
-    System.out.println(String.format(&quot;推送消息[%s]失败，消息丢失&quot;, message));
-}
-</code></pre><h3 id="2-3-异步监听确认"><a href="#2-3-异步监听确认" class="headerlink" title="2.3 异步监听确认"></a>2.3 异步监听确认</h3><p>还可以通过添加监听进行异步确认。改方式的优点是：<strong>异步、可以批量确认</strong></p>
-<pre><code>channel.addConfirmListener(new ConfirmListener() {
-    @Override
-    public void handleAck(long deliveryTag, boolean multiple) throws IOException {
-        System.out.println(String.format(&quot;MQ接收消息[%s:%b]成功&quot;, deliveryTag, multiple));
-    }
-
-    @Override
-    public void handleNack(long deliveryTag, boolean multiple) throws IOException {
-        System.out.println(String.format(&quot;MQ接收消息[%s:%b]失败，消息丢失&quot;, deliveryTag, multiple));
-    }
-});
-</code></pre><p>我们来看下异步确认程序的执行结果：</p>
-<pre><code>MQ接收消息[2:true]成功
-MQ接收消息[3:false]成功
-MQ接收消息[4:false]成功
-MQ接收消息[5:false]成功
-MQ接收消息[6:false]成功
-</code></pre><p>从执行结果中可以看出，是否批量确认在于返回的multiple的参数，此参数为bool值。有时 <code>multiple</code> 返回的是 <strong>true</strong>，这说明批量确认了  响应的 <code>deliveryTag</code> 标识的该条消息之前的所有消息，返回 <code>false</code> 表示单条确认对应的 <code>deliveryTag</code> 这条消息。可以看到使用这种模式 <code>deliveryTag</code> 会从1依次递增标识消息。</p>
-<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3 总结"></a>3 总结</h1><ol>
-<li>一般情况下消费者会使用 <code>channel.basicQos(int prefetch)</code> 方法设置prefetch为1，达到同个消费者多个实例之间”能者多劳”的目的</li>
-<li>为了尽量的保证避免消息的丢失，应该同时采用<strong>消费者手动ack</strong>和<strong>生产者confirm模式</strong></li>
-<li>虽然rabbitMQ还有事务机制保证生产者发送的消息一定会到达broker，但是本身性能受损比较严重，不建议使用，有兴趣的可以另行查找资料</li>
+        <h1 id="1-queue-mirror-介绍"><a href="#1-queue-mirror-介绍" class="headerlink" title="1 queue mirror 介绍"></a>1 queue mirror 介绍</h1><p>默认情况下，在RabbitMQ集群中，每个队列只会将其内容存储一个节点(定义队列的节点)上，队列可以被设置为mirrored queue实现跨多个节点。 每个mirrored queue都是由一个 <strong><em>master</em></strong> 节点和一到多个 <strong><em>mirror</em></strong> 节点， 每个 mirrored queue 都有自己的 <strong><em>master</em></strong> 节点，该队列的所有的操作都是在 <strong><em>master</em></strong> 节点上完成的 (<em>包括生产者推送消息、分发消息到队列、消费者 <code>ack</code> 确认等操作</em>)， <strong><em>master</em></strong> 节点之后再广播通知所有的 <strong><em>mirror</em></strong> 节点。消费者总是会连接到其对应 mirrored queue 的 <strong><em>master</em></strong> 节点上，即使连接的是 <strong><em>mirror</em></strong> 节点也会被转接到 <strong><em>master</em></strong> 节点，消费者 <code>ack</code> 确认后会通知 <strong><em>master</em></strong> 节点，然后会通知所有 <strong><em>mirror</em></strong> 节点，<strong><em>mirror</em></strong> 节点收到通知后会将已经<code>ack</code>的消息从队列删。mirrored queue保证了队列的高可用性</p>
+<h1 id="2-如何设置-mirrored-queue"><a href="#2-如何设置-mirrored-queue" class="headerlink" title="2 如何设置 mirrored queue"></a>2 如何设置 mirrored queue</h1><p>通过设置队列的参数可以保证该队列是 mirrored queue，这些队列参数只能通过 <code>Policies</code> 来控制。普通队列可以随时变为 mirrored queue，反之亦然，只需要修改 <code>Policies</code> 即可。普通队列和有镜像的队列的不同之处在于：前者缺乏相关的参数，会有较高的吞吐量</p>
+<blockquote>
+<p>具体的参数设置</p>
+</blockquote>
+<p>设置 mirrored queue需要两个关键的参数 <code>ha-mode</code> 和 <code>ha-param</code>，其中 <code>ha-param</code> 是可选配置，这两个参数是相互呼应的。<code>ha-mode</code> 参数有三个值：<code>exactly</code>、<code>all</code>、<code>nodes</code>，且 <code>ha-params</code> 参数具体值为： <em>count</em> 和 <em>node names</em></p>
+<ol>
+<li><p>当 <code>ha-mode</code> 值为 <code>exactly</code> 时，<code>ha-params</code> 参数值是 <em>count</em> 也就是具体的数字，表示在队列集群中所有节点的数目(master +  mirrors)</p>
+<ul>
+<li>如果 <em>count</em> 值为1，说明集群中只有一个 <strong><em>master</em></strong> 节点，如果该节点故障，将会出现不可预测的结果 </li>
+<li>如果 <em>count</em> 值为2，说明集群中有两个节点，一个 <strong><em>master</em></strong>，一个 <strong><em>mirrors</em></strong>，如果 <strong><em>master</em></strong>故障，则 <strong><em>mirrors</em></strong> 节点会立刻取代成为master</li>
+<li>如果集群中的节点数目比 <em>count</em> 的值小，则会使用全部的节点</li>
+<li>如果集群中的节点比 <em>count</em> 的值大，则如果此时集群中的一个节点下线了，则会立刻加入新的节点进来</li>
+</ul>
+</li>
+<li><p>当 <code>ha-mode</code> 值为 <code>all</code> 时，此时无需设置 <code>ha-params</code> 参数。表示 mirrired queue 会将所有节点都会用到集群中，如果新增了一个节点也会被添加到集群中。这种方式是比较老旧的方式，会对网络I/O、磁盘I/O以及磁盘空间的利用率带来额外的负担，不应该将所有的节点都纳入集群中，官方推荐的集群中的节点数是 <em>N/2 + 1</em></p>
+</li>
+<li><p>当 <code>ha-mode</code> 值为 <code>nodes</code> 时， <code>ha-params</code> 参数设置为 <em>nodes names</em>，具体的值是 <code>rabbitmqctl cluster_status</code> 命令查询出来的nodes的值，形如 <em>rabbit@hostname</em></p>
+</li>
 </ol>
-<h1 id="4-扩展"><a href="#4-扩展" class="headerlink" title="4 扩展"></a>4 扩展</h1><p><code>Direct</code> 类型交换器和队列的绑定是通过 <code>RoutingKey</code> 来完成的，<code>RoutingKey</code> 和 <code>queue</code> 的关系不只是<strong>一对一</strong>的关系，还可以是<strong>一对多</strong>，<strong>多对一</strong>关系。<strong>注：以下情况每个队列对应一个消费者</strong></p>
-<p><img src="./themes/next/source/images/loading.gif" data-original="/../img/201905/direct-1-n.png" alt="direct交换器RK1-queuen"></p>
-<p><strong>一对多</strong>模型，一个 <code>RoutingKey</code> 可以绑定多个不同的 <code>queue</code> <em>（假设名称为q1，q2，q3）</em> 到broker上，q1，q2，q3对应的消费者分别为 c1、c2和c3。这种情况下，如果生产者通过该 <code>RoutingKey</code> 发送消息，则c1、c2和c3都会收到相同的消息</p>
-<p><img src="./themes/next/source/images/loading.gif" data-original="/../img/201905/direct-n-1.png" alt="direct交换器RKn-queue1"></p>
-<p><strong>多对一</strong>模型，多个不同的 <code>RoutingKey</code> <em>（假设名称为rk1，rk2，rk3）</em> 可以绑定同一个 <code>queue</code> 到broker上，该队列对应的消费者是 <code>c1</code> 。这种情况下，如果生产者通过rk1，rk2，rk3中的任意一个发送消息，则 <code>c1</code> 都会接收到消息</p>
-
+<blockquote>
+<p>集群中多少节点比较合适</p>
+</blockquote>
+<p>将所有的节点都应用到队列集群中，会对网络I/O、磁盘I/O以及磁盘空间的利用率带来额外的负担。如果节点数量是3个或3个以上，则推荐使用公司 <em>(N+1)/2</em> 计算需要放入集群中的节点数目。如果一些数据是瞬时态的或者对时间要求比较高，可以对这些队列降低节点数量，或者甚至不适用 mirrored queue</p>
+<blockquote>
+<p>如何查看一个队列是否是mirrored queue</p>
+</blockquote>
+<p>可以通过 <strong>WEB UI</strong> 页面查看相应的队列是否是存在集群，存在集群的队列形式如下：</p>
+<p><img src="./themes/next/source/images/loading.gif" data-original="/../img/201905/mirrored_queue.png" alt="mirrored_queue"></p>
+<h1 id="mirrored-queue的-master、master节点迁移、数据存放"><a href="#mirrored-queue的-master、master节点迁移、数据存放" class="headerlink" title="mirrored queue的 master、master节点迁移、数据存放"></a>mirrored queue的 master、master节点迁移、数据存放</h1><blockquote>
+<p>集群中的master节点</p>
+</blockquote>
+<p>集群中 <strong><em>master</em></strong> 节点的选举有是三种策略控制方式：</p>
+<ol>
+<li>使用队列参数 <code>x-queue-master-locator</code></li>
+<li>通过 <strong><em>policy</em></strong> 设置 <code>queue-master-locator</code></li>
+<li>在配置文件中设置 <code>queue_master_locator</code></li>
+</ol>
+<p>上述三种配置方式可以达到相同的效果，配置的值是一样的，有以下几种情况：</p>
+<ul>
+<li>设置值为 <code>min-masters</code>：选举节点中负载最小的为 <strong><em>master</em></strong></li>
+<li>设置值为 <code>client-local</code>:选举客户端定义队列时指定的节点为 <strong><em>master</em></strong></li>
+<li>设置值为 <code>random</code>：随机挑选一个节点</li>
+</ul>
+<blockquote>
+<p><strong>“nodes” 类型的mirrored queue</strong></p>
+</blockquote>
+<p>如果一个mirrored queue的 <code>ha-mode</code>设置为 <code>nodes</code>，则当更新该队列对应的 <em>policy</em> 时，如果当前的 <strong><em>master</em></strong> 节点没有在修改后的 <code>ha-params</code>指定的主机中，则该 <strong><em>master</em></strong> 节点会在当前集群中丢失。为了防止数据的丢失，RabbitMQ会保持 <strong><em>master</em></strong> 节点在线，直到所有的 <strong><em>mirrors</em></strong> 节点同步完成，该节点才会消失</p>
+<blockquote>
+<p>独立队列 <em><code>exclusive=true</code></em> 集群</p>
+</blockquote>
+<p>如果一个队列是独立性质的，即 <code>exclusive=true</code>，则该队列不能设置为 mirrored queue</p>
+<blockquote>
+<p>普通队列集群</p>
+</blockquote>
+<p>如果队列集群中的 <strong><em>master</em></strong> 节点正常运行，那么对于该队列的所有的操作都可以映射到集群中的每个节点上，该队列的操作仍然只会被路由到主节点。如果集群中的 <strong><em>master</em></strong> 节点故障了，那么该队列是否是持久化队列表现不同。<strong>非持久化队列直接删除</strong>，<strong>持久化队列的所有的操作都不能继续进行</strong>，直到节点恢复正常。这个时候在RabbitMQ的日志文件中可以看到相关报错信息，大致像这样：</p>
+<pre><code>operation queue.declare caused a channel exception not_found: home node &apos;rabbit@hostname&apos; of durable queue &apos;queue-name&apos; in vhost
+</code></pre>
       
     </div>
 
@@ -576,8 +576,8 @@ MQ接收消息[6:false]成功
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/26/Direct类型交换器-基础使用/" rel="next" title="Direct类型交换器-基础使用">
-                <i class="fa fa-chevron-left"></i> Direct类型交换器-基础使用
+              <a href="/2019/06/10/参数和Policies/" rel="next" title="参数和Policies">
+                <i class="fa fa-chevron-left"></i> 参数和Policies
               </a>
             
           </div>
@@ -585,10 +585,6 @@ MQ接收消息[6:false]成功
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/27/Fanout交换器/" rel="prev" title="Fanout交换器">
-                Fanout交换器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -761,7 +757,7 @@ MQ接收消息[6:false]成功
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Direct类型交换器-生产者confirm模式"><span class="nav-number">1.</span> <span class="nav-text">Direct类型交换器-生产者confirm模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-prefetch属性的设置"><span class="nav-number">1.1.</span> <span class="nav-text">1 prefetch属性的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-生产者confirm模式"><span class="nav-number">1.2.</span> <span class="nav-text">2 生产者confirm模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-设置channel为confirm模式"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 设置channel为confirm模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-手动逐条确认"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 手动逐条确认</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-异步监听确认"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 异步监听确认</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-总结"><span class="nav-number">2.</span> <span class="nav-text">3 总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-扩展"><span class="nav-number">3.</span> <span class="nav-text">4 扩展</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-queue-mirror-介绍"><span class="nav-number">1.</span> <span class="nav-text">1 queue mirror 介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-如何设置-mirrored-queue"><span class="nav-number">2.</span> <span class="nav-text">2 如何设置 mirrored queue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mirrored-queue的-master、master节点迁移、数据存放"><span class="nav-number">3.</span> <span class="nav-text">mirrored queue的 master、master节点迁移、数据存放</span></a></li></ol></div>
             
 
           </div>
